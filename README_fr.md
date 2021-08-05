@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Application de liste de tâches auto-hébergée 
+Application de liste de tâches auto-hébergée
 
 **Version incluse :** 0.17.1~ynh1
 
