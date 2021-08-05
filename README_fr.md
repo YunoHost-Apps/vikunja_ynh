@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Application de liste de tâches auto-hébergée 
 
-**Version incluse :** 0.17.0~ynh1
+**Version incluse :** 0.17.1~ynh1
 
 **Démo :** https://try.vikunja.io/login
 
