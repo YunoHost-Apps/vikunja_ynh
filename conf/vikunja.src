@@ -1,5 +1,5 @@
-SOURCE_URL=https://dl.vikunja.io/api/0.17.1/vikunja-unstable-amd64.deb
-SOURCE_SUM=0c24a28ddfa3e185761177e088c328fead721f321e2a5c1adfaaa6486717fefc
+SOURCE_URL=https://dl.vikunja.io/api/0.17.0/vikunja-unstable-amd64.deb
+SOURCE_SUM=31348c62f599b093f1c464c48c09a4c23b7a1d2d881a373adabc3f23b80d10a6
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=deb
 SOURCE_IN_SUBDIR=true
