@@ -114,7 +114,7 @@ ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/confi
 ynh_script_progression --message="Installing backend..." --weight=15
 
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=vikunja
+ynh_setup_source --dest_dir=$tempdir --source_id=api
 ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
 chmod +x /opt/vikunja/vikunja
 
