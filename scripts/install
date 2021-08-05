@@ -85,17 +85,6 @@ ynh_psql_test_if_first_run
 ynh_psql_setup_db --db_user=$db_name --db_name=$db_name
 
 #=================================================
-# INSTALL BACKEND
-#=================================================
-ynh_script_progression --message="Installing backend..." --weight=15
-
-tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=vikunja
-ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
-
-chmod +x /opt/vikunja/vikunja
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
@@ -109,32 +98,33 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
+
+redis_db=$(ynh_redis_get_free_db)
+ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
+
+#chmod 600 "/etc/vikunja/config.yml"
+
+#=================================================
+# INSTALL BACKEND
+#=================================================
+ynh_script_progression --message="Installing backend..." --weight=15
+
+tempdir="$(mktemp -d)"
+ynh_setup_source --dest_dir=$tempdir --source_id=vikunja
+ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
+
+chmod +x /opt/vikunja/vikunja
+
+#=================================================
 # NGINX CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring NGINX web server..." --weight=3
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# HANDLE LOG FILES AND LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..."
-
-# Create log directory
-mkdir -p /var/log/$app
-touch /var/log/$app/$app.log
-chown -R $app /var/log/$app
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/opt/vikunja/config.yml"
-
-#chmod 600 "/etc/vikunja/config.yml"
 
 #=================================================
 # SETUP SYSTEMD
