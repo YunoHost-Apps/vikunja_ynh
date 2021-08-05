@@ -102,6 +102,7 @@ chown -R $app:www-data "$final_path"
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
+touch "/etc/vikunja"
 redis_db=$(ynh_redis_get_free_db)
 ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
 
