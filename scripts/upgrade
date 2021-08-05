@@ -106,7 +106,7 @@ chmod +x /opt/vikunja/vikunja
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/opt/vikunja/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
 
 #chmod 600 "/etc/vikunja/config.yml"
 
