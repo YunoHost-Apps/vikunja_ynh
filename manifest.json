@@ -4,7 +4,7 @@
     "packaging_format": 1,
     "description": {
         "en": "Self-hosted To-Do list application",
-        "fr": "Application de liste de tâches auto-hébergée "
+        "fr": "Application de liste de tâches auto-hébergée"
     },
     "version": "0.17.1~ynh1",
     "url": "https://vikunja.io/",
