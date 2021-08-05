@@ -89,8 +89,10 @@ ynh_psql_setup_db --db_user=$db_name --db_name=$db_name
 #=================================================
 ynh_script_progression --message="Installing backend..." --weight=15
 
-
-mkdir -p /etc/vikunja/
+$configdir="/etc/vikunja/"
+mkdir -p $configdir
+chmod 750 "$configdir"
+chown -R $app "$configdir"
 
 tempdir="$(mktemp -d)"
 ynh_setup_source --dest_dir=$tempdir --source_id=vikunja
