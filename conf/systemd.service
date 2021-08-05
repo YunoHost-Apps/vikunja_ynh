@@ -1,0 +1,18 @@
+[Unit]
+Description=Vikunja: To-Do list
+After=syslog.target
+After=network.target
+Requires=postgresql.service
+Requires=redis.service
+
+[Service]
+Type=simple
+User=__APP__
+Group=__APP__
+WorkingDirectory=/opt/vikunja
+ExecStart=/opt/vikunja/vikunja
+RestartSec=2s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
