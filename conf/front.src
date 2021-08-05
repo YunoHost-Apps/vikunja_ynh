@@ -1,5 +1,5 @@
-SOURCE_URL=https://dl.vikunja.io/frontend/vikunja-frontend-0.11.0.zip
-SOURCE_SUM=3a5dfea11cf5865440853907d9c96a16b636bc1bc9bf44e46c89965bea5a50fe
+SOURCE_URL=https://dl.vikunja.io/frontend/vikunja-frontend-unstable.zip
+SOURCE_SUM=4e176ad1c4e44c0a40a2d6f7326ecb735960dd33ed378f11f2f6e40eb38ffa08
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=false
