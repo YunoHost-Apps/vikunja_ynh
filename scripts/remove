@@ -58,7 +58,7 @@ ynh_script_progression --message="Removing dependencies..." --weight=1
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
-dpkg --remove vikunja
+dpkg --purge vikunja
 
 #=================================================
 # REMOVE THE REDIS DATABASE
