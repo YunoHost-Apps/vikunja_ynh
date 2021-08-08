@@ -111,9 +111,9 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 domain="$new_domain"
 path="$new_path"
-ynh_add_config --template="../conf/miniflux.conf" --destination="$final_path/$app.conf"
+ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
 
-chmod 600 "$final_path/$app.conf"
+chmod 600 "/etc/vikunja/config.yml"
 
 #=================================================
 # GENERIC FINALISATION
