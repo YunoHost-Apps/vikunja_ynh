@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Self-hosted To-Do list application
 
-**Shipped version:** 0.17.1~ynh2
+**Shipped version:** 0.17.1~ynh3
 
 **Demo:** https://try.vikunja.io/login
 
