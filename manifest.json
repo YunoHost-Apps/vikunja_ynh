@@ -22,7 +22,7 @@
     "requirements": {
         "yunohost": ">= 4.2.4"
     },
-    "multi_instance": false,
+    "multi_instance": true,
     "services": [
         "nginx"
     ],
@@ -32,6 +32,12 @@
                 "name": "domain",
                 "type": "domain",
                 "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "example": "/vikunja",
+                "default": "/vikunja"
             },
             {
                 "name": "is_public",
