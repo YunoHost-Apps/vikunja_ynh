@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Application de liste de tâches auto-hébergée
+Vikunja est une application de liste de tâches Open Source auto-hébergée pour toutes les plateformes.
 
 **Version incluse :** 0.17.1~ynh3
 
