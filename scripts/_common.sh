@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="postgresql apt-transport-https redis-server"
+pkg_dependencies="postgresql apt-transport-https"
 
 #=================================================
 # PERSONAL HELPERS
