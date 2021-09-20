@@ -87,7 +87,7 @@ then
 
 	tempdir="$(mktemp -d)"
 	ynh_setup_source --dest_dir=$tempdir --source_id=api
-	ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
+	ynh_exec_warn_less N | dpkg -i $tempdir/vikunja-unstable-amd64.deb
 
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
