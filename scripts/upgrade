@@ -26,11 +26,11 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
+smtp_user_pwd=$(ynh_app_setting_get --app=$app --key=smtp_user_pwd)
 
 #=================================================
 # CHECK VERSION
 #=================================================
-ynh_script_progression --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
 

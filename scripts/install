@@ -123,6 +123,8 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
+smtp_user_pwd=$(ynh_string_random --length=24)
+ynh_app_setting_set --app=$app --key=path --value=$smtp_user_pwd
 redis_db=$(ynh_redis_get_free_db)
 ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
 
