@@ -104,9 +104,9 @@ mailer:
   # SMTP Host port
   port: 25
   # SMTP username
-  username: "vikunja"
+  username: ""
   # SMTP password
-  password: "__SMTP_USER_PWD__"
+  password: ""
   # Wether to skip verification of the tls certificate on the server
   skiptlsverify: false
   # The default from address when sending emails
