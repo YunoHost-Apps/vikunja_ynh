@@ -1,0 +1,23 @@
+version = "1.0"
+
+[main]
+name = "Vikunja configuration"
+services = ["__APP__"]
+
+    [main.config]
+    name = "Configuration Options"
+
+        [main.config.set_motd]
+        ask = "Set MOTD"
+        type = "string"
+        help = "Set the MOTD message shown in Vikunja login page"
+        bind = "motd:/etc/vikunja/config.yml"
+
+        [main.config.enable_registration]
+        ask = "Enable registration"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "Whether to let new users registering themselves or not"
+        bind = "enableregistration:/etc/vikunja/config.yml"
+

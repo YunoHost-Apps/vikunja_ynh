@@ -28,6 +28,9 @@ secret=$(ynh_string_random --length=32)
 
 app=$YNH_APP_INSTANCE_NAME
 
+set_motd=""
+enable_registration="true"
+
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -37,7 +40,6 @@ final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
 mkdir -p "/etc/vikunja"
-#touch "/etc/vikunja/config.yml"
 
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
@@ -49,6 +51,8 @@ ynh_script_progression --message="Storing installation settings..." --weight=2
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
+ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -131,6 +135,8 @@ ynh_app_setting_set --app=$app --key=smtp_user_pwd --value=$smtp_user_pwd
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
 ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
+chmod 400 "/etc/vikunja/config.yml"
+chown $app:$app "/etc/vikunja/config.yml"
 
 #=================================================
 # SETUP SYSTEMD

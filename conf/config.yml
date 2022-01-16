@@ -16,11 +16,11 @@ service:
   # Enable the caldav endpoint, see the docs for more details
   enablecaldav: true
   # Set the motd message, available from the /info endpoint
-  motd: ""
+  motd: __SET_MOTD__
   # Enable sharing of lists via a link
   enablelinksharing: true
   # Whether to let new users registering themselves or not
-  enableregistration: true
+  enableregistration: __ENABLE_REGISTRATION__
   # Whether to enable task attachments or not
   enabletaskattachments: true
   # The time zone all timestamps are in. Please note that time zones have to use [the official tz database names](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). UTC or GMT offsets won't work.
