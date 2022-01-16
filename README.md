@@ -24,14 +24,6 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 - Tasks  
 - Kanban board
 - CalDAV
-
-### Features
-
-- Stay organized 
-- Collaborate with peers
-- Tasks  
-- Kanban board
-- CalDAV
 - Links  
 
 **Shipped version:** 0.18.2~ynh1
