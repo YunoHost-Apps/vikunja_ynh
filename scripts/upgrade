@@ -96,12 +96,16 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path" --source_id="front" --keep="/etc/vikunja/config.yml"
+
+	mkdir -p "/opt/vikunja/files"
+
 fi
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x /opt/vikunja/vikunja
+chmod +x "/opt/vikunja/vikunja"
+chown -R $app:www-data "/opt/vikunja/files"
 
 #=================================================
 # ADD A CONFIGURATION
