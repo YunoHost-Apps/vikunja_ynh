@@ -104,11 +104,11 @@ mailer:
   # SMTP Host port
   port: 25
   # SMTP username
-  username: ""
+  username: "vikunja"
   # SMTP password
-  password: ""
+  password: "__SMTP_USER_PWD__"
   # Wether to skip verification of the tls certificate on the server
-  skiptlsverify: false
+  skiptlsverify: true
   # The default from address when sending emails
   fromemail: "mail@vikunja"
   # The length of the mail queue.
@@ -120,7 +120,7 @@ mailer:
 
 log:
   # A folder where all the logfiles should go.
-  path: /var/log
+  path: /var/log/__APP__
   # Whether to show any logging at all or none
   enabled: true
   # Where the normal log should go. Possible values are stdout, stderr, file or off to disable standard logging.
