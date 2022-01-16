@@ -13,3 +13,11 @@ services = ["__APP__"]
         help = "Set the motd message, available from the /info endpoint"
         bind = "motd:/etc/vikunja/config.yml"
 
+        [main.config.enable_registration]
+        ask = "Enable registration"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "Whether to let new users registering themselves or not"
+        bind = "enableregistration:/etc/vikunja/config.yml"
+
