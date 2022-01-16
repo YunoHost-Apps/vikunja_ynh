@@ -100,15 +100,15 @@ mailer:
   # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
   enabled: false
   # SMTP Host
-  host: "localhost"
+  host: ""
   # SMTP Host port
-  port: 25
+  port: 587
   # SMTP username
-  username: "vikunja"
+  username: "user"
   # SMTP password
   password: ""
   # Wether to skip verification of the tls certificate on the server
-  skiptlsverify: true
+  skiptlsverify: false
   # The default from address when sending emails
   fromemail: "mail@vikunja"
   # The length of the mail queue.
