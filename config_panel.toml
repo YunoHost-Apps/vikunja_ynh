@@ -10,7 +10,7 @@ services = ["__APP__"]
         [main.config.set_motd]
         ask = "Set MOTD"
         type = "string"
-        help = "Set the motd message, available from the /info endpoint"
+        help = "Set the MOTD message shown in Vikunja login page"
         bind = "motd:/etc/vikunja/config.yml"
 
         [main.config.enable_registration]
