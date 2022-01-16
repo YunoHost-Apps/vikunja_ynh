@@ -107,7 +107,11 @@ ynh_script_progression --message="Installing backend..." --weight=15
 tempdir="$(mktemp -d)"
 ynh_setup_source --dest_dir=$tempdir --source_id=api
 ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
+
+mkdir -p "/opt/vikunja/files"
+
 chmod +x "/opt/vikunja/vikunja"
+chown -R $app:www-data "/opt/vikunja/files"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -124,8 +128,6 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
 ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
-
-#chmod 600 "/etc/vikunja/config.yml"
 
 #=================================================
 # SETUP SYSTEMD

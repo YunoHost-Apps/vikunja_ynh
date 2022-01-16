@@ -15,7 +15,16 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Self-hosted To-Do list application
+Vikunja is a self-hosted open-source to-do list application for all platforms.
+
+### Features
+
+- Stay organized 
+- Collaborate with peers
+- Tasks  
+- Kanban board
+- CalDAV
+- Links  
 
 **Shipped version:** 0.18.2~ynh1
 
