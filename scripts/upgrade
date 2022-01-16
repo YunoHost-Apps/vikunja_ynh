@@ -26,6 +26,9 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
 
+set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
+enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
+
 #=================================================
 # CHECK VERSION
 #=================================================
@@ -36,6 +39,16 @@ upgrade_type=$(ynh_check_app_version_changed)
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+if [ -z "$set_motd" ]; then
+	set_motd=""
+	ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
+fi
+
+if [ -z "$enable_registration" ]; then
+	enable_registration="true"
+	ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
+fi
 
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
