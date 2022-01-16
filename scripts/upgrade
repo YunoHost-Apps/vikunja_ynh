@@ -20,7 +20,6 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
-architecture=$(ynh_detect_arch)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
@@ -44,6 +43,11 @@ if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
 
 	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
+# Create a permission if needed
+if ! ynh_permission_exists --permission="api"; then
+	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
 fi
 
 #=================================================
@@ -92,21 +96,25 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --source_id="front"
+	ynh_setup_source --dest_dir="$final_path" --source_id="front" --keep="/etc/vikunja/config.yml"
+
+	mkdir -p "/opt/vikunja/files"
+
 fi
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x /opt/vikunja/vikunja
+chmod +x "/opt/vikunja/vikunja"
+chown -R $app:www-data "/opt/vikunja/files"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+#ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
+# redis_db=$(ynh_redis_get_free_db)
+# ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
 
 #chmod 600 "/etc/vikunja/config.yml"
 
