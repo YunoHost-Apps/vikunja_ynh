@@ -98,7 +98,7 @@ cors:
 
 mailer:
   # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
-  enabled: true
+  enabled: false
   # SMTP Host
   host: "localhost"
   # SMTP Host port
