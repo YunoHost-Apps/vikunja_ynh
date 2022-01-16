@@ -41,6 +41,12 @@ ynh_backup --src_path="/etc/vikunja/config.yml"
 ynh_backup --src_path="/opt/vikunja"
 
 #=================================================
+# BACKUP LOGROTATE
+#=================================================
+
+ynh_backup --src_path="/etc/logrotate.d/$app"
+
+#=================================================
 # BACKUP THE NGINX CONFIGURATION
 #=================================================
 
