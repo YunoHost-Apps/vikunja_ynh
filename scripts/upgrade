@@ -26,6 +26,7 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
 smtp_user_pwd=$(ynh_app_setting_get --app=$app --key=smtp_user_pwd)
+redis_db=$(ynh_app_setting_get --app=$app --key=redis_db)
 
 #=================================================
 # CHECK VERSION
