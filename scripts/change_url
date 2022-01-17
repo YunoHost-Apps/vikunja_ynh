@@ -35,6 +35,9 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 secret=$(ynh_string_random --length=32)
 timezone="$(cat /etc/timezone)"
 
+set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
+enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
