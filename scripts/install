@@ -97,7 +97,7 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path" --source_id="front"
-ynh_setup_source --dest_dir="$final_path" --source_id="$architecture"
+ynh_setup_source --dest_dir="$final_path/vikunja" --source_id="$architecture"
 
 mkdir -p "$final_path/files"
 
@@ -120,9 +120,9 @@ ynh_add_nginx_config
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="$final_path/config.yml"
-chmod 400 "$final_path/config.yml"
-chown $app:$app "$final_path/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="$final_path/vikunja/config.yml"
+chmod 400 "$final_path/vikunja/config.yml"
+chown $app:$app "$final_path/vikunja/config.yml"
 
 #=================================================
 # SETUP SYSTEMD
