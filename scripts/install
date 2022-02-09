@@ -107,6 +107,20 @@ chown -R $app:www-data "$final_path"
 chown -R root:root "$final_path/vikunja"
 chmod +x "$final_path/vikunja/vikunja"
 
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --weight=1
+
+# Download, check integrity, uncompress and patch the source from app.src
+mkdir -p "$/opt/vikunja"
+mkdir -p "$/opt/vikunja/files"
+ynh_setup_source --dest_dir="/opt/vikunja" --source_id="$architecture"
+
+chmod +x "/opt/vikunja/vikunja"
+chown -R $app:www-data "/opt/vikunja/files"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -121,9 +135,9 @@ ynh_add_nginx_config
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="$final_path/vikunja/config.yml"
-chmod 400 "$final_path/vikunja/config.yml"
-chown $app:$app "$final_path/vikunja/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="/opt/vikunja/config.yml"
+chmod 400 "/opt/vikunja/config.yml"
+chown $app:$app "/opt/vikunja/config.yml"
 
 #=================================================
 # SETUP SYSTEMD
