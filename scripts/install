@@ -104,7 +104,7 @@ mkdir -p "$final_path/files"
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "$final_path/vikunja"
+chmod +x "$final_path/vikunja/vikunja"
 
 #=================================================
 # NGINX CONFIGURATION
