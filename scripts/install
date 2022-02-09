@@ -100,8 +100,6 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 ynh_setup_source --dest_dir="$final_path" --source_id="front"
 ynh_setup_source --dest_dir="$final_path/vikunja" --source_id="$architecture"
 
-mkdir -p "$final_path/files"
-
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
@@ -112,8 +110,8 @@ chown -R $app:www-data "$final_path"
 ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
-mkdir -p "$/opt/vikunja"
-mkdir -p "$/opt/vikunja/files"
+mkdir -p "/opt/vikunja"
+mkdir -p "/opt/vikunja/files"
 ynh_setup_source --dest_dir="/opt/vikunja" --source_id="$architecture"
 
 chmod +x "/opt/vikunja/vikunja"
