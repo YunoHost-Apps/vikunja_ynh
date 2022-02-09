@@ -25,6 +25,7 @@ path_url="/"
 is_public=$YNH_APP_ARG_IS_PUBLIC
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
+architecture=$YNH_ARCH
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -108,11 +109,10 @@ chown -R $app:www-data "$final_path"
 #=================================================
 ynh_script_progression --message="Installing backend..." --weight=15
 
-tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=api
-ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
-
+mkdir -p "/opt/vikunja"
 mkdir -p "/opt/vikunja/files"
+
+ynh_setup_source --dest_dir="/opt/vikunja" --source_id="$architecture"
 
 chmod +x "/opt/vikunja/vikunja"
 chown -R $app:www-data "/opt/vikunja/files"

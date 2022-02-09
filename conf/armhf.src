@@ -1,0 +1,6 @@
+SOURCE_URL=https://dl.vikunja.io/api/0.18.1/vikunja-v0.18.1-linux-arm-7-full
+SOURCE_SUM=79548e506538319f8aab07a5630c3c2032906b34386a83c26d1a6cfc9993b39c
+SOURCE_SUM_PRG=sha256sum
+SOURCE_IN_SUBDIR=false
+SOURCE_FILENAME=vikunja
+SOURCE_EXTRACT=false
