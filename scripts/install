@@ -85,9 +85,10 @@ ynh_system_user_create --username=$app --home_dir=$final_path
 ynh_script_progression --message="Creating a PostgreSQL database..." --weight=2
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_psql_test_if_first_run
-ynh_psql_setup_db --db_user=$db_name --db_name=$db_name
+ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -104,9 +105,6 @@ mkdir -p "$final_path/files"
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chown -R root:root "$final_path/vikunja"
-chmod +x "$final_path/vikunja/vikunja"
-
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE

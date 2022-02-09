@@ -10,7 +10,7 @@ service:
   # The base path on the file system where the binary and assets are.
   # Vikunja will also look in this path for a config file, so you could provide only this variable to point to a folder
   # with a config file which will then be used.
-  rootpath: "__FINALPATH__/vikunja"
+  rootpath: "/opt/vikunja/"
   # The max number of items which can be returned per page
   maxitemsperpage: 50
   # Enable the caldav endpoint, see the docs for more details
@@ -44,7 +44,7 @@ database:
   # Database type to use. Supported types are mysql, postgres and sqlite.
   type: "postgres"
   # Database user which is used to connect to the database.
-  user: "__DB_NAME__"
+  user: "__DB_USER__"
   # Database password
   password: "__DB_PWD__"
   # Database host
