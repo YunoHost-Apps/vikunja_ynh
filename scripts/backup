@@ -39,6 +39,9 @@ ynh_print_info --message="Declaring files to be backed up..."
 # Frontend
 ynh_backup --src_path="$final_path"
 
+# Config
+ynh_backup --src_path="/etc/vikunja/config.yml"
+
 # Backend
 ynh_backup --src_path="/opt/vikunja"
 

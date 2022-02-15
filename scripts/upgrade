@@ -25,6 +25,7 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
+architecture=$YNH_ARCH
 
 set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
 enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
@@ -113,12 +114,11 @@ then
 	cp "$back" "/opt/vikunja/vikunja"
 fi
 
-chmod +x "/opt/vikunja/vikunja"
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "$final_path/vikunja"
-chown -R $app:www-data "$final_path/files"
+chmod +x "/opt/vikunja/vikunja"
+chown -R $app:www-data "/opt/vikunja/files"
 
 #=================================================
 # NGINX CONFIGURATION
