@@ -91,28 +91,30 @@ ynh_psql_test_if_first_run
 ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
+# INSTALL FRONTEND
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression --message="Setting up frontend..." --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path" --source_id="front"
-#ynh_setup_source --dest_dir="$final_path/vikunja" --source_id="$architecture"
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
+# INSTALL BACKEND
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression --message="Setting up backend..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
 mkdir -p "/opt/vikunja"
 mkdir -p "/opt/vikunja/files"
-ynh_setup_source --dest_dir="/opt/vikunja" --source_id="$architecture"
+tempdir="$(mktemp -d)"
+ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
+cp "$back" "/opt/vikunja/vikunja"
 
 chmod +x "/opt/vikunja/vikunja"
 chown -R $app:www-data "/opt/vikunja/files"
