@@ -25,6 +25,7 @@ path_url="/"
 is_public=$YNH_APP_ARG_IS_PUBLIC
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
+architecture=$YNH_ARCH
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -38,8 +39,6 @@ ynh_script_progression --message="Validating installation parameters..." --weigh
 
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
-
-mkdir -p "/etc/vikunja"
 
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
@@ -86,14 +85,15 @@ ynh_system_user_create --username=$app --home_dir=$final_path
 ynh_script_progression --message="Creating a PostgreSQL database..." --weight=2
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_psql_test_if_first_run
-ynh_psql_setup_db --db_user=$db_name --db_name=$db_name
+ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
+# INSTALL FRONTEND
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression --message="Setting up frontend..." --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
@@ -106,13 +106,15 @@ chown -R $app:www-data "$final_path"
 #=================================================
 # INSTALL BACKEND
 #=================================================
-ynh_script_progression --message="Installing backend..." --weight=15
+ynh_script_progression --message="Setting up backend..." --weight=1
 
-tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=api
-ynh_exec_warn_less dpkg -i $tempdir/vikunja-unstable-amd64.deb
-
+# Download, check integrity, uncompress and patch the source from app.src
+mkdir -p "/opt/vikunja"
 mkdir -p "/opt/vikunja/files"
+tempdir="$(mktemp -d)"
+ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
+cp "$back" "/opt/vikunja/vikunja"
 
 chmod +x "/opt/vikunja/vikunja"
 chown -R $app:www-data "/opt/vikunja/files"
@@ -130,8 +132,10 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
+mkdir -p "/etc/vikunja"
 redis_db=$(ynh_redis_get_free_db)
 ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
+
 chmod 400 "/etc/vikunja/config.yml"
 chown $app:$app "/etc/vikunja/config.yml"
 
@@ -155,7 +159,7 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action=start --log_path=systemd --line_match="server started on"
+ynh_systemd_action --service_name=$app --action=start --log_path=systemd #--line_match="server started on"
 
 #=================================================
 # SETUP SSOWAT

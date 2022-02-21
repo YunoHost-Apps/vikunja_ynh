@@ -44,7 +44,7 @@ database:
   # Database type to use. Supported types are mysql, postgres and sqlite.
   type: "postgres"
   # Database user which is used to connect to the database.
-  user: "__DB_NAME__"
+  user: "__DB_USER__"
   # Database password
   password: "__DB_PWD__"
   # Database host
