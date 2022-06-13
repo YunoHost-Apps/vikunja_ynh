@@ -25,7 +25,6 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
-architecture=$YNH_ARCH
 
 set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
 enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
@@ -109,7 +108,7 @@ then
 	# Backend
 	mkdir -p "/opt/vikunja/files"
 	tempdir="$(mktemp -d)"
-	ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 	back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 	cp "$back" "/opt/vikunja/vikunja"
 fi

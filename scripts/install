@@ -25,7 +25,6 @@ path_url="/"
 is_public=$YNH_APP_ARG_IS_PUBLIC
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
-architecture=$YNH_ARCH
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -112,7 +111,7 @@ ynh_script_progression --message="Setting up backend..." --weight=1
 mkdir -p "/opt/vikunja"
 mkdir -p "/opt/vikunja/files"
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 cp "$back" "/opt/vikunja/vikunja"
 
