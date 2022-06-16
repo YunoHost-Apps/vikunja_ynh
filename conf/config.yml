@@ -98,19 +98,19 @@ cors:
 
 mailer:
   # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
-  enabled: false
+  enabled: true
   # SMTP Host
-  host: ""
+  host: "localhost"
   # SMTP Host port
-  port: 587
+  port: 25
   # SMTP username
-  username: "user"
+  username: ""
   # SMTP password
   password: ""
   # Wether to skip verification of the tls certificate on the server
-  skiptlsverify: false
+  skiptlsverify: true
   # The default from address when sending emails
-  fromemail: "mail@vikunja"
+  fromemail: "vikunja@__DOMAIN__"
   # The length of the mail queue.
   queuelength: 100
   # The timeout in seconds after which the current open connection to the mailserver will be closed.
