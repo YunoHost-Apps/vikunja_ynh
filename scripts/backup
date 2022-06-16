@@ -40,10 +40,10 @@ ynh_print_info --message="Declaring files to be backed up..."
 ynh_backup --src_path="$final_path"
 
 # Config
-ynh_backup --src_path="/etc/vikunja/config.yml"
+ynh_backup --src_path="/etc/$app/config.yml"
 
 # Backend
-ynh_backup --src_path="/opt/vikunja"
+ynh_backup --src_path="/opt/$app"
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
