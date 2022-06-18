@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Vikunja for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![Working status](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)  
 [![Install Vikunja with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -32,7 +32,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 
 ## Screenshots
 
-![](./doc/screenshots/kanban.png)
+![Screenshot of Vikunja](./doc/screenshots/kanban.png)
 
 ## Disclaimers / important information
 
@@ -44,21 +44,22 @@ You can also configure Vikunja by editing this file `/opt/vikunja/config.yml` us
 The API is accesible with this path: https://domain.ltd/api/v1/docs
 ## Documentation and resources
 
-* Official app website: https://vikunja.io/
-* Official admin documentation: https://vikunja.io/docs/
-* Upstream app code repository: https://kolaente.dev/vikunja/
-* YunoHost documentation for this app: https://yunohost.org/app_vikunja
-* Report a bug: https://github.com/YunoHost-Apps/vikunja_ynh/issues
+* Official app website: <https://vikunja.io/>
+* Official admin documentation: <https://vikunja.io/docs/>
+* Upstream app code repository: <https://kolaente.dev/vikunja/>
+* YunoHost documentation for this app: <https://yunohost.org/app_vikunja>
+* Report a bug: <https://github.com/YunoHost-Apps/vikunja_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/vikunja_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/vikunja_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade vikunja -u https://github.com/YunoHost-Apps/vikunja_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>

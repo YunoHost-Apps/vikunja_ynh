@@ -25,7 +25,6 @@ path_url="/"
 is_public=$YNH_APP_ARG_IS_PUBLIC
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
-architecture=$YNH_ARCH
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -109,15 +108,15 @@ chown -R $app:www-data "$final_path"
 ynh_script_progression --message="Setting up backend..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
-mkdir -p "/opt/vikunja"
-mkdir -p "/opt/vikunja/files"
+mkdir -p "/opt/$app"
+mkdir -p "/opt/$app/files"
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-cp "$back" "/opt/vikunja/vikunja"
+cp "$back" "/opt/$app/vikunja"
 
-chmod +x "/opt/vikunja/vikunja"
-chown -R $app:www-data "/opt/vikunja/files"
+chmod +x "/opt/$app/vikunja"
+chown -R $app:www-data "/opt/$app/files"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -132,12 +131,12 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-mkdir -p "/etc/vikunja"
+mkdir -p "/etc/$app"
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/etc/vikunja/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="/etc/$app/config.yml"
 
-chmod 400 "/etc/vikunja/config.yml"
-chown $app:$app "/etc/vikunja/config.yml"
+chmod 400 "/etc/$app/config.yml"
+chown $app:$app "/etc/$app/config.yml"
 
 #=================================================
 # SETUP SYSTEMD

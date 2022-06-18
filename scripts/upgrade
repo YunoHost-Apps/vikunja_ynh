@@ -25,7 +25,6 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
-architecture=$YNH_ARCH
 
 set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
 enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
@@ -104,21 +103,21 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	# Frontend
-	ynh_setup_source --dest_dir="$final_path" --source_id="front" --keep="/etc/vikunja/config.yml"
+	ynh_setup_source --dest_dir="$final_path" --source_id="front" --keep="/etc/$app/config.yml"
 	
 	# Backend
-	mkdir -p "/opt/vikunja/files"
+	mkdir -p "/opt/$app/files"
 	tempdir="$(mktemp -d)"
-	ynh_setup_source --dest_dir=$tempdir --source_id="$architecture"
+	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 	back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-	cp "$back" "/opt/vikunja/vikunja"
+	cp "$back" "/opt/$app/vikunja"
 fi
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "/opt/vikunja/vikunja"
-chown -R $app:www-data "/opt/vikunja/files"
+chmod +x "/opt/$app/vikunja"
+chown -R $app:www-data "/opt/$app/files"
 
 #=================================================
 # NGINX CONFIGURATION

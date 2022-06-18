@@ -98,7 +98,7 @@ ynh_system_user_delete --username=$app
 ynh_script_progression --message="Removing backend..." --weight=1
 
 # Delete /opt/vikunja
-ynh_secure_remove --file="/opt/vikunja"
+ynh_secure_remove --file="/opt/$app"
 
 #=================================================
 # END OF SCRIPT
