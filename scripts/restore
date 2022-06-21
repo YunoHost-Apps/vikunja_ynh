@@ -65,9 +65,6 @@ chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
-# Config
-ynh_restore_file --origin_path="/etc/$app/config.yml"
-
 # Backend
 ynh_restore_file --origin_path="/opt/$app"
 chmod +x "/opt/$app/vikunja"

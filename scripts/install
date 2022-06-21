@@ -131,12 +131,11 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-mkdir -p "/etc/$app"
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/etc/$app/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="/opt/$app/config.yml"
 
-chmod 400 "/etc/$app/config.yml"
-chown $app:$app "/etc/$app/config.yml"
+chmod 400 "/opt/$app/config.yml"
+chown $app:$app "/opt/$app/config.yml"
 
 #=================================================
 # SETUP SYSTEMD
