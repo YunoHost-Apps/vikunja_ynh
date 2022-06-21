@@ -24,6 +24,7 @@ ynh_print_info --message="Loading installation settings..."
 app=$YNH_APP_INSTANCE_NAME
 
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
@@ -40,7 +41,7 @@ ynh_print_info --message="Declaring files to be backed up..."
 ynh_backup --src_path="$final_path"
 
 # Backend
-ynh_backup --src_path="/opt/$app"
+ynh_backup --src_path="$backend_path"
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION

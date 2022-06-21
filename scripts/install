@@ -37,6 +37,7 @@ enable_registration="true"
 ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 final_path=/var/www/$app
+backend_path=/opt/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
@@ -107,16 +108,18 @@ chown -R $app:www-data "$final_path"
 #=================================================
 ynh_script_progression --message="Setting up backend..." --weight=1
 
+ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
+
 # Download, check integrity, uncompress and patch the source from app.src
-mkdir -p "/opt/$app"
-mkdir -p "/opt/$app/files"
+mkdir -p "$backend_path"
+mkdir -p "$backend_path/files"
 tempdir="$(mktemp -d)"
 ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-cp "$back" "/opt/$app/vikunja"
+cp "$back" "$backend_path/vikunja"
 
-chmod +x "/opt/$app/vikunja"
-chown -R $app:www-data "/opt/$app/files"
+chmod +x "$backend_path/vikunja"
+chown -R $app:www-data "$backend_path/files"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -132,10 +135,10 @@ ynh_add_nginx_config
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/opt/$app/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="$backend_path/config.yml"
 
-chmod 400 "/opt/$app/config.yml"
-chown $app:$app "/opt/$app/config.yml"
+chmod 400 "$backend_path/config.yml"
+chown $app:$app "$backend_path/config.yml"
 
 #=================================================
 # SETUP SYSTEMD
