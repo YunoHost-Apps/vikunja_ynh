@@ -28,6 +28,7 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 
 # Needed for helper "ynh_add_nginx_config"
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
@@ -117,9 +118,9 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 domain="$new_domain"
 path="$new_path"
 redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="/etc/$app/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="$backend_path/config.yml"
 
-chmod 600 "/etc/$app/config.yml"
+chmod 600 "$backend_path/config.yml"
 
 #=================================================
 # GENERIC FINALISATION

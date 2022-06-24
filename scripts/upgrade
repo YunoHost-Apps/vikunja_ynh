@@ -19,6 +19,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
@@ -36,9 +37,29 @@ enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+ynh_script_progression --message="Backing up $app before upgrading (may take a while)..." --weight=4
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	# restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# If backend_path doesn't exist, create it
+if [ -z "$backend_path" ]; then
+	backend_path=/opt/$app
+	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
+fi
 
 if [ -z "$set_motd" ]; then
 	set_motd=""
@@ -61,20 +82,6 @@ fi
 if ! ynh_permission_exists --permission="api"; then
 	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
 fi
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up $app before upgrading (may take a while)..." --weight=4
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -103,21 +110,21 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	# Frontend
-	ynh_setup_source --dest_dir="$final_path" --source_id="front" --keep="/etc/$app/config.yml"
+	ynh_setup_source --dest_dir="$final_path" --source_id="front"
 	
 	# Backend
-	mkdir -p "/opt/$app/files"
+	mkdir -p "$backend_path/files"
 	tempdir="$(mktemp -d)"
 	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
 	back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-	cp "$back" "/opt/$app/vikunja"
+	cp "$back" "$backend_path/vikunja"
 fi
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "/opt/$app/vikunja"
-chown -R $app:www-data "/opt/$app/files"
+chmod +x "$backend_path/vikunja"
+chown -R $app:www-data "$backend_path/files"
 
 #=================================================
 # NGINX CONFIGURATION

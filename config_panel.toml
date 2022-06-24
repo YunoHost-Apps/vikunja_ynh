@@ -11,7 +11,7 @@ services = ["__APP__"]
         ask = "Set MOTD"
         type = "string"
         help = "Set the MOTD message shown in Vikunja login page"
-        bind = "motd:/etc/vikunja/config.yml"
+        bind = "motd:/opt/__APP__/config.yml"
 
         [main.config.enable_registration]
         ask = "Enable registration"
@@ -19,5 +19,5 @@ services = ["__APP__"]
         yes = "true"
         no = "false"
         help = "Whether to let new users registering themselves or not"
-        bind = "enableregistration:/etc/vikunja/config.yml"
+        bind = "enableregistration:/opt/__APP__/config.yml"
 
