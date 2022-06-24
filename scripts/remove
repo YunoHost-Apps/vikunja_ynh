@@ -19,6 +19,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 port=$(ynh_app_setting_get --app=$app --key=port)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 
@@ -74,6 +75,9 @@ ynh_script_progression --message="Removing $app main directory..." --weight=6
 # Remove the app directory securely
 ynh_secure_remove --file="$final_path"
 
+# Remove backend
+ynh_secure_remove --file="$backend_path"
+
 #=================================================
 # REMOVE NGINX CONFIGURATION
 #=================================================
@@ -91,14 +95,6 @@ ynh_script_progression --message="Removing the dedicated system user..." --weigh
 
 # Delete a system user
 ynh_system_user_delete --username=$app
-
-#=================================================
-# REMOVE BACKEND
-#=================================================
-ynh_script_progression --message="Removing backend..." --weight=1
-
-# Delete /opt/vikunja
-ynh_secure_remove --file="/opt/$app"
 
 #=================================================
 # END OF SCRIPT
