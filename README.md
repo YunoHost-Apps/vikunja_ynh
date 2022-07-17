@@ -26,7 +26,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 - CalDAV
 - Links  
 
-**Shipped version:** 0.18.2~ynh3
+**Shipped version:** 0.18.2~ynh4
 
 **Demo:** https://try.vikunja.io/login
 
