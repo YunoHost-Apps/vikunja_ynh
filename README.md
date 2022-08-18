@@ -28,6 +28,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 
 **Shipped version:** 0.19.0~ynh1
 
+
 **Demo:** https://try.vikunja.io/login
 
 ## Screenshots
