@@ -8,16 +8,60 @@ services = ["__APP__"]
     name = "Configuration Options"
 
         [main.config.set_motd]
-        ask = "Set MOTD"
+        ask.en = "Set MOTD"
+        ask.fr = "Définir MOTD"
         type = "string"
-        help = "Set the MOTD message shown in Vikunja login page"
+        help.en = "Set the MOTD message shown in Vikunja login page"
+        help.fr = "Message du jour qui apparait sur la page d'authentification de Vikunja"
         bind = "motd:/opt/__APP__/config.yml"
 
         [main.config.enable_registration]
-        ask = "Enable registration"
+        ask.en = "Enable registration"
+        ask.fr = "Activer la création de comptes"
         type = "boolean"
         yes = "true"
         no = "false"
-        help = "Whether to let new users registering themselves or not"
+        help.en = "Whether to let new users registering themselves or not"
+        help.fr = "Permettre ou non aux nouveaux utilisateurs de s'enregistrer eux-mêmes"
         bind = "enableregistration:/opt/__APP__/config.yml"
+
+        [main.config.enable_linksharing]
+        ask.en = "Enable links sharing"
+        ask.fr = "Activer liens de partage"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help.en = "Enable sharing of lists via a link"
+        help.fr = "Permettre le partage des listes via un lien"
+        bind = "enablelinksharing:/opt/__APP__/config.yml"
+
+        [main.config.enable_taskattachments]
+        ask.en = "Enable tasks attachments"
+        ask.fr = "Activer les pièces jointes de tâches"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help.en = "Whether to enable task attachments or not"
+        help.fr = "Permettre ou non d'ajouter des pièces jointes aux tâches"
+        bind = "enabletaskattachments:/opt/__APP__/config.yml"
+        
+        [main.config.enable_taskcomments]
+        ask.en = "Enable task comments"
+        ask.fr = "Activer les commentaires de tâches"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help.en = "Whether task comments should be enabled or not"
+        help.fr = "Permettre ou non d'ajouter des commentaires aux taches"
+        bind = "enabletaskcomments:/opt/__APP__/config.yml"
+
+        [main.config.enable_emailreminders]
+        ask.en = "Enable email reminders"
+        ask.fr = "Activer les mails de rappels"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help.en = "If enabled, vikunja will send an email to everyone who is either assigned to a task or created it when a task reminder is due."
+        help.fr = "Si cette option est activée, Vikunja enverra un e-mail à tous ceux qui sont affectés à une tâche ou qui l'ont créée lorsqu'un rappel de tâche est dû."
+        bind = "enableemailreminders:/opt/__APP__/config.yml"
 
