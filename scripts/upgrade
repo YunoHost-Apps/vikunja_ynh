@@ -79,6 +79,41 @@ if [ -z "$enable_registration" ]; then
 	ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
 fi
 
+if [ -z "$enable_linksharing" ]; then
+	enable_linksharing="true"
+	ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
+fi
+
+if [ -z "$enable_taskattachments" ]; then
+	enable_taskattachments="true"
+	ynh_app_setting_set --app=$app --key=enable_taskattachments --value=$enable_taskattachments
+fi
+
+if [ -z "$enable_taskcomments" ]; then
+	enable_taskcomments="true"
+	ynh_app_setting_set --app=$app --key=enable_taskcomments --value=$enable_taskcomments
+fi
+
+if [ -z "$enable_emailreminders" ]; then
+	enable_emailreminders="true"
+	ynh_app_setting_set --app=$app --key=enable_emailreminders --value=$enable_emailreminders
+fi
+
+if [ -z "$enable_userdeletion" ]; then
+	enable_userdeletion="true"
+	ynh_app_setting_set --app=$app --key=enable_userdeletion --value=$enable_userdeletion
+fi
+
+if [ -z "$maxavatarsize" ]; then
+	maxavatarsize="true"
+	ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
+fi
+
+if [ -z "$maxitemsperpage" ]; then
+	maxitemsperpage="true"
+	ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
+fi
+
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all

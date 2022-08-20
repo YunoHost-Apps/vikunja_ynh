@@ -30,6 +30,13 @@ app=$YNH_APP_INSTANCE_NAME
 
 set_motd=""
 enable_registration="true"
+enable_linksharing="true"
+enable_taskattachments="true"
+enable_taskcomments="true"
+enable_emailreminders="true"
+enable_userdeletion="true"
+maxavatarsize=1024
+maxitemsperpage=50
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -52,6 +59,13 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
 ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
+ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
+ynh_app_setting_set --app=$app --key=enable_taskattachments --value=$enable_taskattachments
+ynh_app_setting_set --app=$app --key=enable_taskcomments --value=$enable_taskcomments
+ynh_app_setting_set --app=$app --key=enable_emailreminders --value=$enable_emailreminders
+ynh_app_setting_set --app=$app --key=enable_userdeletion --value=$enable_userdeletion
+ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
+ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
 
 #=================================================
 # STANDARD MODIFICATIONS
