@@ -26,7 +26,7 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 - CalDAV
 - Links  
 
-**Version incluse :** 0.19.0~ynh1
+**Version incluse :** 0.19.2~ynh1
 
 **Démo :** https://try.vikunja.io/login
 
@@ -43,6 +43,8 @@ Vous pouvez configurer Vikunja en modifiant le fichier `/opt/vikunja/config.yml`
 
 * Site officiel de l'app : <https://vikunja.io/>
 * Documentation officielle de l'admin : <https://vikunja.io/docs/>
+* Portail de téléchargement officiel: <https://dl.vikunja.io/>
+* Blog officiel (utile pour avoir les changements de chaque version): <https://vikunja.io/blog/>
 * Dépôt de code officiel de l'app : <https://kolaente.dev/vikunja/>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_vikunja>
 * Signaler un bug : <https://github.com/YunoHost-Apps/vikunja_ynh/issues>
