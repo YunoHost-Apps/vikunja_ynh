@@ -105,12 +105,12 @@ if [ -z "$enable_userdeletion" ]; then
 fi
 
 if [ -z "$maxavatarsize" ]; then
-	maxavatarsize="true"
+	maxavatarsize=1024
 	ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
 fi
 
 if [ -z "$maxitemsperpage" ]; then
-	maxitemsperpage="true"
+	maxitemsperpage=50
 	ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
 fi
 
