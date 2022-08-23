@@ -38,6 +38,7 @@ timezone="$(cat /etc/timezone)"
 
 set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
 enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
+enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
