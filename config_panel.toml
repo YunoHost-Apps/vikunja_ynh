@@ -10,14 +10,14 @@ services = ["__APP__"]
 
         [main.config.set_motd]
         ask.en = "Set MOTD"
-        ask.fr = "Définir MOTD"
+        ask.fr = "Définir le MOTD"
         type = "string"
         help = "Set the MOTD message shown in Vikunja login page"
         bind = "motd:/opt/__APP__/config.yml"
 
         [main.config.enable_registration]
         ask.en = "Enable registration"
-        ask.fr = "Activer la création de comptes"
+        ask.fr = "Activer la création de compte"
         type = "boolean"
         yes = "true"
         no = "false"
@@ -26,7 +26,7 @@ services = ["__APP__"]
 
         [main.config.enable_linksharing]
         ask.en = "Enable links sharing"
-        ask.fr = "Activer liens de partage"
+        ask.fr = "Activer les liens de partage"
         type = "boolean"
         yes = "true"
         no = "false"
@@ -35,7 +35,7 @@ services = ["__APP__"]
 
         [main.config.enable_taskattachments]
         ask.en = "Enable tasks attachments"
-        ask.fr = "Activer les pièces jointes de tâches"
+        ask.fr = "Activer les pièces jointes de tâche"
         type = "boolean"
         yes = "true"
         no = "false"
@@ -44,7 +44,7 @@ services = ["__APP__"]
         
         [main.config.enable_taskcomments]
         ask.en = "Enable task comments"
-        ask.fr = "Activer les commentaires de tâches"
+        ask.fr = "Activer les commentaires de tâche"
         type = "boolean"
         yes = "true"
         no = "false"
@@ -53,7 +53,7 @@ services = ["__APP__"]
 
         [main.config.enable_emailreminders]
         ask.en = "Enable email reminders"
-        ask.fr = "Activer les mails de rappels"
+        ask.fr = "Activer les emails de rappels"
         type = "boolean"
         yes = "true"
         no = "false"
