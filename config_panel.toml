@@ -2,22 +2,84 @@ version = "1.0"
 
 [main]
 name = "Vikunja configuration"
+
 services = ["__APP__"]
 
     [main.config]
     name = "Configuration Options"
 
         [main.config.set_motd]
-        ask = "Set MOTD"
+        ask.en = "Set MOTD"
+        ask.fr = "Définir MOTD"
         type = "string"
         help = "Set the MOTD message shown in Vikunja login page"
         bind = "motd:/opt/__APP__/config.yml"
 
         [main.config.enable_registration]
-        ask = "Enable registration"
+        ask.en = "Enable registration"
+        ask.fr = "Activer la création de comptes"
         type = "boolean"
         yes = "true"
         no = "false"
         help = "Whether to let new users registering themselves or not"
         bind = "enableregistration:/opt/__APP__/config.yml"
+
+        [main.config.enable_linksharing]
+        ask.en = "Enable links sharing"
+        ask.fr = "Activer liens de partage"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "Enable sharing of lists via a link"
+        bind = "enablelinksharing:/opt/__APP__/config.yml"
+
+        [main.config.enable_taskattachments]
+        ask.en = "Enable tasks attachments"
+        ask.fr = "Activer les pièces jointes de tâches"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "Whether to enable task attachments or not"
+        bind = "enabletaskattachments:/opt/__APP__/config.yml"
+        
+        [main.config.enable_taskcomments]
+        ask.en = "Enable task comments"
+        ask.fr = "Activer les commentaires de tâches"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "Whether task comments should be enabled or not"
+        bind = "enabletaskcomments:/opt/__APP__/config.yml"
+
+        [main.config.enable_emailreminders]
+        ask.en = "Enable email reminders"
+        ask.fr = "Activer les mails de rappels"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "If enabled, vikunja will send an email to everyone who is either assigned to a task or created it when a task reminder is due."
+        bind = "enableemailreminders:/opt/__APP__/config.yml"
+
+        [main.config.enable_userdeletion]
+        ask.en = "Enable user deletion"
+        ask.fr = "Activer la suppression de compte"
+        type = "boolean"
+        yes = "true"
+        no = "false"
+        help = "If true, will allow users to request the complete deletion of their account. When using external authentication methods it may be required to coordinate with them in order to delete the account. This setting will not affect the cli commands for user deletion"
+        bind = "enableuserdeletion:/opt/__APP__/config.yml"
+
+        [main.config.maxavatarsize]
+        ask.en = "Max avatar size"
+        ask.fr = "Taille maximum de l'avatar"
+        type = "number"
+        help = "The maximum size clients will be able to request for user avatars. If clients request a size bigger than this, it will be changed on the fly"
+        bind = "maxavatarsize:/opt/__APP__/config.yml"
+
+        [main.config.maxitemsperpage]
+        ask.en = "Max items per page"
+        ask.fr = "Nombre d'éléments maximum par page"
+        type = "number"
+        help = "The max number of items which can be returned per page"
+        bind = "maxitemsperpage:/opt/__APP__/config.yml"
 
