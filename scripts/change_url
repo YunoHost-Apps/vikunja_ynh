@@ -38,7 +38,13 @@ timezone="$(cat /etc/timezone)"
 
 set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
 enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
+enable_linksharing=$(ynh_app_setting_get --app=$app --key=enable_linksharing)
+enable_taskattachments=$(ynh_app_setting_get --app=$app --key=enable_taskattachments)
+enable_taskcomments=$(ynh_app_setting_get --app=$app --key=enable_taskcomments)
 enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
+enable_userdeletion=$(ynh_app_setting_get --app=$app --key=enable_userdeletion)
+maxavatarsize=$(ynh_app_setting_get --app=$app --key=maxavatarsize)
+maxitemsperpage=$(ynh_app_setting_get --app=$app --key=maxitemsperpage)
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
