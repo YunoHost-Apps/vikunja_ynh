@@ -12,21 +12,21 @@ service:
   # with a config file which will then be used.
   rootpath: "/opt/vikunja/"
   # The max number of items which can be returned per page
-  maxitemsperpage: 50
+  maxitemsperpage: __MAXITEMSPERPAGE__
   # Enable the caldav endpoint, see the docs for more details
   enablecaldav: true
   # Set the motd message, available from the /info endpoint
   motd: __SET_MOTD__
   # Enable sharing of lists via a link
-  enablelinksharing: true
+  enablelinksharing: __ENABLE_LINKSHARING__
   # Whether to let new users registering themselves or not
   enableregistration: __ENABLE_REGISTRATION__
   # Whether to enable task attachments or not
-  enabletaskattachments: true
+  enabletaskattachments: __ENABLE_TASKATTACHMENTS__
   # The time zone all timestamps are in. Please note that time zones have to use [the official tz database names](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). UTC or GMT offsets won't work.
   timezone: __TIMEZONE__
   # Whether task comments should be enabled or not
-  enabletaskcomments: true
+  enabletaskcomments: __ENABLE_TASKCOMMENTS__
   # Whether totp is enabled. In most cases you want to leave that enabled.
   enabletotp: true
   # If not empty, enables logging of crashes and unhandled errors in sentry.
@@ -38,7 +38,14 @@ service:
   testingtoken: ''
   # If enabled, vikunja will send an email to everyone who is either assigned to a task or created it when a task reminder
   # is due.
-  enableemailreminders: true
+  enableemailreminders: __ENABLE_EMAILREMINDERS__
+  # If true, will allow users to request the complete deletion of their account. When using external authentication methods 
+  # it may be required to coordinate with them in order to delete the account. This setting will not affect the cli commands
+  # for user deletion.
+  enableuserdeletion: __ENABLE_USERDELETION__
+  # The maximum size clients will be able to request for user avatars.
+  # If clients request a size bigger than this, it will be changed on the fly.
+  maxavatarsize: __MAXAVATARSIZE__
 
 database:
   # Database type to use. Supported types are mysql, postgres and sqlite.
