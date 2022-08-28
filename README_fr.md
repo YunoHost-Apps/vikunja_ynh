@@ -39,7 +39,7 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 
 ## Configuration
 
-Vous pouvez configurer Vikunja en modifiant le fichier `/opt/vikunja/config.yml` en vous aidant de la [documentation](https://vikunja.io/docs/config-options/).
+Vous pouvez configurer Vikunja avec les config panels ou en modifiant le fichier `/opt/vikunja/config.yml` en vous aidant de la [documentation](https://vikunja.io/docs/config-options/).
 ## Documentations et ressources
 
 * Site officiel de l'app : <https://vikunja.io/>
