@@ -6,7 +6,7 @@
         "en": "Self-hosted To-Do list application",
         "fr": "Application de liste de tâches auto-hébergée"
     },
-    "version": "0.19.2~ynh1",
+    "version": "0.20.2~ynh1",
     "url": "https://vikunja.io/",
     "upstream": {
         "license": "GPL-3.0",
