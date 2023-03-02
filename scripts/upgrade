@@ -12,30 +12,30 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=2
+#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=2
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
-port=$(ynh_app_setting_get --app=$app --key=port)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-db_user=$db_name
-db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
+#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
+#REMOVEME? path=$(ynh_app_setting_get --app=$app --key=path)
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+#REMOVEME? backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
+#REMOVEME? port=$(ynh_app_setting_get --app=$app --key=port)
+#REMOVEME? db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+#REMOVEME? db_user=$db_name
+#REMOVEME? db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
 
-set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
-enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
-enable_linksharing=$(ynh_app_setting_get --app=$app --key=enable_linksharing)
-enable_taskattachments=$(ynh_app_setting_get --app=$app --key=enable_taskattachments)
-enable_taskcomments=$(ynh_app_setting_get --app=$app --key=enable_taskcomments)
-enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
-enable_userdeletion=$(ynh_app_setting_get --app=$app --key=enable_userdeletion)
-maxavatarsize=$(ynh_app_setting_get --app=$app --key=maxavatarsize)
-maxitemsperpage=$(ynh_app_setting_get --app=$app --key=maxitemsperpage)
+#REMOVEME? set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
+#REMOVEME? enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
+#REMOVEME? enable_linksharing=$(ynh_app_setting_get --app=$app --key=enable_linksharing)
+#REMOVEME? enable_taskattachments=$(ynh_app_setting_get --app=$app --key=enable_taskattachments)
+#REMOVEME? enable_taskcomments=$(ynh_app_setting_get --app=$app --key=enable_taskcomments)
+#REMOVEME? enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
+#REMOVEME? enable_userdeletion=$(ynh_app_setting_get --app=$app --key=enable_userdeletion)
+#REMOVEME? maxavatarsize=$(ynh_app_setting_get --app=$app --key=maxavatarsize)
+#REMOVEME? maxitemsperpage=$(ynh_app_setting_get --app=$app --key=maxitemsperpage)
 
 
 #=================================================
@@ -50,13 +50,13 @@ upgrade_type=$(ynh_check_app_version_changed)
 ynh_script_progression --message="Backing up $app before upgrading (may take a while)..." --weight=4
 
 # Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
+#REMOVEME? ynh_backup_before_upgrade
+#REMOVEME? ynh_clean_setup () {
 	# restore it if the upgrade fails
-	ynh_restore_upgradebackup
+#REMOVEME? 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -66,7 +66,7 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 # If backend_path doesn't exist, create it
 if [ -z "$backend_path" ]; then
 	backend_path=/opt/$app
-	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
+#REMOVEME? 	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 fi
 
 if [ -z "$set_motd" ]; then
@@ -115,15 +115,15 @@ if [ -z "$maxitemsperpage" ]; then
 fi
 
 # Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
+#REMOVEME? if ynh_legacy_permissions_exists; then
+#REMOVEME? 	ynh_legacy_permissions_delete_all
 
 	ynh_app_setting_delete --app=$app --key=is_public
 fi
 
 # Create a permission if needed
-if ! ynh_permission_exists --permission="api"; then
-	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
+#REMOVEME? if ! ynh_permission_exists --permission="api"; then
+#REMOVEME? 	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
 fi
 
 #=================================================
@@ -138,10 +138,10 @@ ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+#REMOVEME? ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
+#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -153,7 +153,7 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	# Frontend
-	ynh_setup_source --dest_dir="$final_path" --source_id="front"
+	ynh_setup_source --dest_dir="$install_dir" --source_id="front"
 	
 	# Backend
 	mkdir -p "$backend_path/files"
@@ -163,9 +163,9 @@ then
 	cp "$back" "$backend_path/vikunja"
 fi
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 chmod +x "$backend_path/vikunja"
 chown -R $app:www-data "$backend_path/files"
 
@@ -191,9 +191,9 @@ ynh_add_nginx_config
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=10
+#REMOVEME? ynh_script_progression --message="Upgrading dependencies..." --weight=10
 
-ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # SETUP SYSTEMD
@@ -219,9 +219,9 @@ ynh_systemd_action --service_name=$app --action=start --log_path=systemd --line_
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
-ynh_systemd_action --service_name=nginx --action=reload
+#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
