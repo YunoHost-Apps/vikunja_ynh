@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Vikunja pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+
 [![Installer Vikunja avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
 *[Read this readme in english.](./README.md)*
@@ -34,11 +35,6 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 
 ![Capture d’écran de Vikunja](./doc/screenshots/kanban.png)
 
-## Avertissements / informations importantes
-
-## Configuration
-
-Vous pouvez configurer Vikunja avec les config panels ou en modifiant le fichier `/opt/vikunja/config.yml` en vous aidant de la [documentation](https://vikunja.io/docs/config-options/).
 ## Documentations et ressources
 
 * Site officiel de l’app : <https://vikunja.io/>
