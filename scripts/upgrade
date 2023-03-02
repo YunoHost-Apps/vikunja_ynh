@@ -12,51 +12,15 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=2
 
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
-#REMOVEME? path=$(ynh_app_setting_get --app=$app --key=path)
-#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
-#REMOVEME? backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
-#REMOVEME? port=$(ynh_app_setting_get --app=$app --key=port)
-#REMOVEME? db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-#REMOVEME? db_user=$db_name
-#REMOVEME? db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
-
-#REMOVEME? set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
-#REMOVEME? enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
-#REMOVEME? enable_linksharing=$(ynh_app_setting_get --app=$app --key=enable_linksharing)
-#REMOVEME? enable_taskattachments=$(ynh_app_setting_get --app=$app --key=enable_taskattachments)
-#REMOVEME? enable_taskcomments=$(ynh_app_setting_get --app=$app --key=enable_taskcomments)
-#REMOVEME? enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
-#REMOVEME? enable_userdeletion=$(ynh_app_setting_get --app=$app --key=enable_userdeletion)
-#REMOVEME? maxavatarsize=$(ynh_app_setting_get --app=$app --key=maxavatarsize)
-#REMOVEME? maxitemsperpage=$(ynh_app_setting_get --app=$app --key=maxitemsperpage)
-
 
 #=================================================
 # CHECK VERSION
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up $app before upgrading (may take a while)..." --weight=4
-
-# Backup the current version of the app
-#REMOVEME? ynh_backup_before_upgrade
-#REMOVEME? ynh_clean_setup () {
-	# restore it if the upgrade fails
-#REMOVEME? 	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -114,18 +78,6 @@ if [ -z "$maxitemsperpage" ]; then
 	ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
 fi
 
-# Cleaning legacy permissions
-#REMOVEME? if ynh_legacy_permissions_exists; then
-#REMOVEME? 	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
-
-# Create a permission if needed
-#REMOVEME? if ! ynh_permission_exists --permission="api"; then
-#REMOVEME? 	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
-fi
-
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
@@ -134,14 +86,6 @@ fi
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
 ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-#REMOVEME? ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -189,13 +133,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 ynh_add_nginx_config
 
 #=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-#REMOVEME? ynh_script_progression --message="Upgrading dependencies..." --weight=10
-
-#REMOVEME? ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
@@ -215,13 +152,6 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 ynh_systemd_action --service_name=$app --action=start --log_path=systemd --line_match="server started on"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
