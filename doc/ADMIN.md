@@ -1,5 +1,3 @@
-## Configuration
-
 You can configure Vikunja with the config panels in the webadmin or by editing this file `/opt/vikunja/config.yml` using the [documentation](https://vikunja.io/docs/config-options/).
 
 
