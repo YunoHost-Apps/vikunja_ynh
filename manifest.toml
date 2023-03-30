@@ -17,7 +17,7 @@ admindoc = "https://vikunja.io/docs/"
 code = "https://kolaente.dev/vikunja/"
 
 [integration]
-yunohost = ">= 11.1.12"
+yunohost = ">= 11.1.15"
 architectures = "all"
 multi_instance = true
 ldap = false
