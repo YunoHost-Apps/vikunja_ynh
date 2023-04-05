@@ -30,50 +30,50 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 # If backend_path doesn't exist, create it
 if [ -z "$backend_path" ]; then
 	backend_path=/opt/$app
-#REMOVEME? 	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
+	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 fi
 
-if [ -z "$set_motd" ]; then
+if [ -z "${set_motd:-}" ]; then
 	set_motd=""
 	ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
 fi
 
-if [ -z "$enable_registration" ]; then
+if [ -z "${enable_registration:-}" ]; then
 	enable_registration="true"
 	ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
 fi
 
-if [ -z "$enable_linksharing" ]; then
+if [ -z "${enable_linksharing:-}" ]; then
 	enable_linksharing="true"
 	ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
 fi
 
-if [ -z "$enable_taskattachments" ]; then
+if [ -z "${enable_taskattachments:-}" ]; then
 	enable_taskattachments="true"
 	ynh_app_setting_set --app=$app --key=enable_taskattachments --value=$enable_taskattachments
 fi
 
-if [ -z "$enable_taskcomments" ]; then
+if [ -z "${enable_taskcomments:-}" ]; then
 	enable_taskcomments="true"
 	ynh_app_setting_set --app=$app --key=enable_taskcomments --value=$enable_taskcomments
 fi
 
-if [ -z "$enable_emailreminders" ]; then
+if [ -z "${enable_emailreminders:-}" ]; then
 	enable_emailreminders="true"
 	ynh_app_setting_set --app=$app --key=enable_emailreminders --value=$enable_emailreminders
 fi
 
-if [ -z "$enable_userdeletion" ]; then
+if [ -z "${enable_userdeletion:-}" ]; then
 	enable_userdeletion="true"
 	ynh_app_setting_set --app=$app --key=enable_userdeletion --value=$enable_userdeletion
 fi
 
-if [ -z "$maxavatarsize" ]; then
+if [ -z "${maxavatarsize:-}" ]; then
 	maxavatarsize=1024
 	ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
 fi
 
-if [ -z "$maxitemsperpage" ]; then
+if [ -z "${maxitemsperpage:-}" ]; then
 	maxitemsperpage=50
 	ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
 fi
@@ -102,12 +102,11 @@ then
 	# Backend
 	mkdir -p "$backend_path/files"
 	tempdir="$(mktemp -d)"
-	ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+	ynh_setup_source --dest_dir=$tempdir --source_id="back"
 	back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 	cp "$back" "$backend_path/vikunja"
 fi
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 chmod +x "$backend_path/vikunja"

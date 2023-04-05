@@ -69,7 +69,7 @@ ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 mkdir -p "$backend_path"
 mkdir -p "$backend_path/files"
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id=$YNH_ARCH
+ynh_setup_source --dest_dir=$tempdir --source_id="back"
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 cp "$back" "$backend_path/vikunja"
 
