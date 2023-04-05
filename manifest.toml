@@ -1,0 +1,75 @@
+packaging_format = 2
+
+id = "vikunja"
+name = "Vikunja"
+description.en = "Self-hosted To-Do list application"
+description.fr = "Application de liste de tâches auto-hébergée"
+
+version = "0.20.4~ynh1"
+
+maintainers = ["eric_G"]
+
+[upstream]
+license = "GPL-3.0"
+website = "https://vikunja.io/"
+demo = "https://try.vikunja.io/login"
+admindoc = "https://vikunja.io/docs/"
+code = "https://kolaente.dev/vikunja/"
+
+[integration]
+yunohost = ">= 11.1.17"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "1500M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+    full_domain = true
+
+    [install.init_main_permission]
+    help.en = "If enabled, Vikunja will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si cette case est cochée, Vikunja sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+    [resources.sources]
+        [resources.sources.back]
+        arm64.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.20.4-linux-arm64-full.zip"
+        arm64.sha256 = "8d4c53dffc06484bd3d783dfd9c623f109ec116cbd00145b5e6c5756758c281d"
+        amd64.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.20.4-linux-amd64-full.zip"
+        amd64.sha256 = "f4c9eea0bb0a05417ca4c40b55119c783e64732ce0e372198cb11c51a9914cdb"
+        armhf.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.20.4-linux-arm-7-full.zip"
+        armhf.sha256 = "0746fdc6daa335629bf0330cf9ecb7255fa6e5b7ceb6c61bed19e456895c7c20"
+        i386.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.20.4-linux-386-full.zip"
+        i386.sha256 = "7a24ba368c56c851c3a9e666dfc5baeb31bfaa411776caa9095ce2f87e8dcd85"
+        in_subdir = false
+        
+        [resources.sources.front]
+        url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.20.5.zip"
+        sha256 = "7d458c95ac84f29c550469682ebcb05401425c5ff7be5af3fc21e31cd05aed4f"
+        in_subdir = false
+
+    [resources.ports]
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+    api.url = "/api"
+    api.show_tile = false
+    api.allowed = "visitors"
+
+    [resources.apt]
+    packages = "postgresql"
+
+    [resources.database]
+    type = "postgresql"

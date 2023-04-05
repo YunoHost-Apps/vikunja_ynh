@@ -10,74 +10,12 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# RETRIEVE ARGUMENTS
-#=================================================
-
-old_domain=$YNH_APP_OLD_DOMAIN
-old_path=$YNH_APP_OLD_PATH
-
-new_domain=$YNH_APP_NEW_DOMAIN
-new_path=$YNH_APP_NEW_PATH
-
-app=$YNH_APP_INSTANCE_NAME
-
-#=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
 
-# Needed for helper "ynh_add_nginx_config"
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-backend_path=$(ynh_app_setting_get --app=$app --key=backend_path)
-port=$(ynh_app_setting_get --app=$app --key=port)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-db_user=$db_name
-db_pwd=$(ynh_app_setting_get --app=$app --key=psqlpwd)
 secret=$(ynh_string_random --length=32)
 timezone="$(cat /etc/timezone)"
-
-set_motd=$(ynh_app_setting_get --app=$app --key=set_motd)
-enable_registration=$(ynh_app_setting_get --app=$app --key=enable_registration)
-enable_linksharing=$(ynh_app_setting_get --app=$app --key=enable_linksharing)
-enable_taskattachments=$(ynh_app_setting_get --app=$app --key=enable_taskattachments)
-enable_taskcomments=$(ynh_app_setting_get --app=$app --key=enable_taskcomments)
-enable_emailreminders=$(ynh_app_setting_get --app=$app --key=enable_emailreminders)
-enable_userdeletion=$(ynh_app_setting_get --app=$app --key=enable_userdeletion)
-maxavatarsize=$(ynh_app_setting_get --app=$app --key=maxavatarsize)
-maxitemsperpage=$(ynh_app_setting_get --app=$app --key=maxitemsperpage)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up $app before changing its URL (may take a while)..." --weight=1
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# Remove the new domain config file, the remove script won't do it as it doesn't know yet its location.
-	ynh_secure_remove --file="/etc/nginx/conf.d/$new_domain.d/$app.conf"
-
-	# restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
-
-#=================================================
-# CHECK WHICH PARTS SHOULD BE CHANGED
-#=================================================
-
-change_domain=0
-if [ "$old_domain" != "$new_domain" ]
-then
-	change_domain=1
-fi
-
-change_path=0
-if [ "$old_path" != "$new_path" ]
-then
-	change_path=1
-fi
+redis_db=$(ynh_redis_get_free_db)
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -93,29 +31,7 @@ ynh_systemd_action --service_name=$app --action=stop --log_path="/var/log/$app/$
 #=================================================
 ynh_script_progression --message="Updating NGINX web server configuration..." --weight=1
 
-nginx_conf_path=/etc/nginx/conf.d/$old_domain.d/$app.conf
-
-# Change the path in the NGINX config file
-if [ $change_path -eq 1 ]
-then
-	# Make a backup of the original NGINX config file if modified
-	ynh_backup_if_checksum_is_different --file="$nginx_conf_path"
-	# Set global variables for NGINX helper
-	domain="$old_domain"
-	path_url="$new_path"
-	# Create a dedicated NGINX config
-	ynh_add_nginx_config
-fi
-
-# Change the domain for NGINX
-if [ $change_domain -eq 1 ]
-then
-	# Delete file checksum for the old conf file location
-	ynh_delete_file_checksum --file="$nginx_conf_path"
-	mv $nginx_conf_path /etc/nginx/conf.d/$new_domain.d/$app.conf
-	# Store file checksum for the new config file location
-	ynh_store_file_checksum --file="/etc/nginx/conf.d/$new_domain.d/$app.conf"
-fi
+ynh_change_url_nginx_config
 
 #=================================================
 # ADD A CONFIGURATION
@@ -124,7 +40,6 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 domain="$new_domain"
 path="$new_path"
-redis_db=$(ynh_redis_get_free_db)
 ynh_add_config --template="../conf/config.yml" --destination="$backend_path/config.yml"
 
 chmod 600 "$backend_path/config.yml"
@@ -138,13 +53,6 @@ ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action=start --log_path=systemd
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
