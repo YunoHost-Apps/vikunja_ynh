@@ -1,7 +1,0 @@
-SOURCE_URL=https://dl.vikunja.io/api/0.20.2/vikunja-v0.20.2-linux-arm64-full.zip
-SOURCE_SUM=80d217013b11e5e7b2c3be50186abca2d46dac122a45ac69dc5189f7a0163cf2
-SOURCE_SUM_PRG=sha256sum
-SOURCE_IN_SUBDIR=false
-SOURCE_FORMAT=zip
-SOURCE_FILENAME=vikunja
-SOURCE_EXTRACT=true
