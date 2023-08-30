@@ -17,7 +17,7 @@ admindoc = "https://vikunja.io/docs/"
 code = "https://kolaente.dev/vikunja/"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -40,14 +40,14 @@ ram.runtime = "50M"
 
     [resources.sources]
         [resources.sources.back]
-        arm64.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.21.0-linux-arm64-full.zip"
-        arm64.sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        amd64.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.21.0-linux-amd64-full.zip"
-        amd64.sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        armhf.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.21.0-linux-arm-7-full.zip"
-        armhf.sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        i386.url = "https://dl.vikunja.io/api/0.20.4/vikunja-v0.21.0-linux-386-full.zip"
-        i386.sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        arm64.url = "https://dl.vikunja.io/api/0.21.0/vikunja-v0.21.0-linux-arm64-full.zip"
+        arm64.sha256 = "8fed6d6840b2196081a27131ce07506a86e7b316aa152ead91415fcca60b3e67"
+        amd64.url = "https://dl.vikunja.io/api/0.21.0/vikunja-v0.21.0-linux-amd64-full.zip"
+        amd64.sha256 = "24d088d11df8539c51997401a36cd8e0b8fc3e1811edfdbb6c5a60247a7aa858"
+        armhf.url = "https://dl.vikunja.io/api/0.21.0/vikunja-v0.21.0-linux-arm-7-full.zip"
+        armhf.sha256 = "16da08b50616df06743cae649a04e890fe1cbbeae7f4ee969cbc00095c939637"
+        i386.url = "https://dl.vikunja.io/api/0.21.0/vikunja-v0.21.0-linux-386-full.zip"
+        i386.sha256 = "e1c8a9b8773651485dc0e3f60f0f8bf978fb11570d7c7e5cbb7644b2557ebd27"
         in_subdir = false
         
         [resources.sources.front]
