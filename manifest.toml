@@ -31,8 +31,8 @@ ram.runtime = "50M"
     type = "domain"
 
     [install.init_main_permission]
-    help.en = "If enabled, Vikunja will be accessible by people who do not have an account. This can be changed later via the webadmin."
-    help.fr = "Si cette case est cochée, Vikunja sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    help.en = "If 'visitors', Vikunja will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si 'visiteurs', Vikunja sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
 
