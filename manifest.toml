@@ -5,7 +5,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.21.0~ynh2"
+version = "0.21.0~ynh3"
 
 maintainers = ["eric_G"]
 
@@ -35,6 +35,13 @@ ram.runtime = "50M"
     help.fr = "Si 'visiteurs', Vikunja sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "select"
+    choices = ["de", "en", "es", "fa", "fr", "it", "lt", "nl", "pl", "pt"]
+    default = "en"
 
 [resources]
 
