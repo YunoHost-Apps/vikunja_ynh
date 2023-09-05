@@ -144,7 +144,7 @@ mailer:
   # Wether to skip verification of the tls certificate on the server
   skiptlsverify: true
   # The default from address when sending emails
-  fromemail: "mail@__DOMAIN__"
+  fromemail: "vikunja@__DOMAIN__"
   # The length of the mail queue.
   queuelength: 100
   # The timeout in seconds after which the current open connection to the mailserver will be closed.
