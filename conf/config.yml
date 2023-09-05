@@ -114,7 +114,7 @@ redis:
   # The password used to authenticate against the redis server
   password: ''
   # 0 means default database
-  db: 0
+  db: __REDIS_DB__
 
 cors:
   # Whether to enable or disable cors headers.
