@@ -40,7 +40,6 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 * Site officiel de l’app : <https://vikunja.io/>
 * Documentation officielle de l’admin : <https://vikunja.io/docs/>
 * Dépôt de code officiel de l’app : <https://kolaente.dev/vikunja/>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_vikunja>
 * Signaler un bug : <https://github.com/YunoHost-Apps/vikunja_ynh/issues>
 
 ## Informations pour les développeurs
