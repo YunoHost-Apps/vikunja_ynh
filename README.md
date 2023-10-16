@@ -40,7 +40,6 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 * Official app website: <https://vikunja.io/>
 * Official admin documentation: <https://vikunja.io/docs/>
 * Upstream app code repository: <https://kolaente.dev/vikunja/>
-* YunoHost documentation for this app: <https://yunohost.org/app_vikunja>
 * Report a bug: <https://github.com/YunoHost-Apps/vikunja_ynh/issues>
 
 ## Developer info
