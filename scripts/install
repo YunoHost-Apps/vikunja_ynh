@@ -15,6 +15,8 @@ source /usr/share/yunohost/helpers
 
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
+redis_db=$(ynh_redis_get_free_db)
+backend_path=/opt/$app
 
 set_motd=""
 enable_registration="true"
@@ -27,15 +29,10 @@ maxavatarsize=1024
 maxitemsperpage=50
 
 #=================================================
-# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
-#=================================================
-
-backend_path=/opt/$app
-
-#=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 
+ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
 ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
 ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
@@ -54,7 +51,6 @@ ynh_script_progression --message="Setting up frontend..." --weight=1
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --source_id="front"
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
@@ -62,8 +58,6 @@ chown -R $app:www-data "$install_dir"
 # INSTALL BACKEND
 #=================================================
 ynh_script_progression --message="Setting up backend..." --weight=1
-
-ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 
 # Download, check integrity, uncompress and patch the source from app.src
 mkdir -p "$backend_path"
@@ -77,26 +71,25 @@ chmod +x "$backend_path/vikunja"
 chown -R $app:www-data "$backend_path/files"
 
 #=================================================
-# ADD A CONFIGURATION
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-redis_db=$(ynh_redis_get_free_db)
-ynh_add_config --template="../conf/config.yml" --destination="$backend_path/config.yml"
-
-chmod 400 "$backend_path/config.yml"
-chown $app:$app "$backend_path/config.yml"
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=1
+ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
 ynh_add_nginx_config
 
 ynh_add_systemd_config
 
 yunohost service add $app --description="Self-hosted To-Do list application" --log="/var/log/$app/$app.log"
+
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
+
+ynh_add_config --template="config.yml" --destination="$backend_path/config.yml"
+
+chmod 400 "$backend_path/config.yml"
+chown $app:$app "$backend_path/config.yml"
 
 #=================================================
 # START SYSTEMD SERVICE

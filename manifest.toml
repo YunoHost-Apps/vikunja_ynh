@@ -5,7 +5,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.21.0~ynh4"
+version = "0.21.0~ynh5"
 
 maintainers = ["eric_G"]
 
@@ -41,7 +41,7 @@ ram.runtime = "50M"
     ask.fr = "Choisissez la langue de l'application"
     type = "select"
     choices = ["de", "en", "es", "fa", "fr", "it", "lt", "nl", "pl", "pt"]
-    default = "en"
+    default = "fr"
 
 [resources]
 
