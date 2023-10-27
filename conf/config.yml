@@ -59,9 +59,6 @@ service:
   # The maximum size clients will be able to request for user avatars.
   # If clients request a size bigger than this, it will be changed on the fly.
   maxavatarsize: __MAXAVATARSIZE__
-  # If set to true, the frontend will show a big red warning not to use this instance for real data as it will be cleared out.
-  # You probably don't need to set this value, it was created specifically for usage on [try](https://try.vikunja.io).
-  demomode: false
 
 database:
   # Database type to use. Supported types are mysql, postgres and sqlite.
@@ -94,18 +91,6 @@ database:
   # Enable SSL/TLS for mysql connections. Options: false, true, skip-verify, preferred
   tls: false
 
-typesense:
-  # Whether to enable the Typesense integration. If true, all tasks will be synced to the configured Typesense
-  # instance and all search and filtering will run through Typesense instead of only through the database.
-  # Typesense allows fast fulltext search including fuzzy matching support. It may return different results than 
-  # what you'd get with a database-only search.
-  enabled: false
-  # The url to the Typesense instance you want to use. Can be hosted locally or in Typesense Cloud as long
-  # as Vikunja is able to reach it.
-  url: ''
-  # The Typesense API key you want to use.
-  apikey: ''
-
 redis:
   # Whether to enable redis or not
   enabled: true
@@ -136,11 +121,11 @@ mailer:
   # **NOTE:** If you're unable to send mail and the only error you see in the logs is an `EOF`, try setting the port to `25`.
   port: 25
   # SMTP Auth Type. Can be either `plain`, `login` or `cram-md5`.
-  authtype: "plain"
+  authtype: "login"
   # SMTP username
-  username: ""
+  username: "__APP__"
   # SMTP password
-  password: ""
+  password: "__MAIL_PWD__"
   # Wether to skip verification of the tls certificate on the server
   skiptlsverify: true
   # The default from address when sending emails
@@ -154,13 +139,13 @@ mailer:
 
 log:
   # A folder where all the logfiles should go.
-  path: /var/log
+  path: "/var/log/__APP__"
   # Whether to show any logging at all or none
   enabled: true
   # Where the normal log should go. Possible values are stdout, stderr, file or off to disable standard logging.
   standard: "stdout"
   # Change the log level. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
-  level: "INFO"
+  level: "DEBUG"
   # Whether or not to log database queries. Useful for debugging. Possible values are stdout, stderr, file or off to disable database logging.
   database: "off"
   # The log level for database log messages. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
@@ -172,11 +157,11 @@ log:
   # Whether or not to log events. Useful for debugging. Possible values are stdout, stderr, file or off to disable events logging.
   events: "off"
   # The log level for event log messages. Possible values (case-insensitive) are ERROR, INFO, DEBUG.
-  eventslevel: "info"
+  eventslevel: "DEBUG"
   # Whether or not to log mail log messages. This will not log mail contents. Possible values are stdout, stderr, file or off to disable mail-related logging.
   mail: "off"
   # The log level for mail log messages. Possible values (case-insensitive) are ERROR, WARNING, INFO, DEBUG.
-  maillevel: "info"
+  maillevel: "DEBUG"
 
 ratelimit:
   # whether or not to enable the rate limit
@@ -345,4 +330,4 @@ defaultsettings:
   # The language of the user interface. Must be an ISO 639-1 language code. Will default to the browser language the user uses when signing up.
   language: __LANGUAGE__
   # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
-  timezone: <time zone set at service.timezone>
+  #timezone: <time zone set at service.timezone>
