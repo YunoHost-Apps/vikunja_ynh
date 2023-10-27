@@ -77,14 +77,6 @@ chmod +x "$backend_path/vikunja"
 chown -R $app:www-data "$backend_path/files"
 
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=3
-
-# Create a dedicated NGINX config
-ynh_add_nginx_config
-
-#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
@@ -100,12 +92,9 @@ chown $app:$app "$backend_path/config.yml"
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=1
 
-ynh_add_systemd_config
+ynh_add_nginx_config
 
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
+ynh_add_systemd_config
 
 yunohost service add $app --description="Self-hosted To-Do list application" --log="/var/log/$app/$app.log"
 

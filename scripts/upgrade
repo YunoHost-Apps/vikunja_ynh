@@ -100,7 +100,6 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
-	# Download, check integrity, uncompress and patch the source from app.src
 	# Frontend
 	ynh_setup_source --dest_dir="$install_dir" --source_id="front"
 	
@@ -136,17 +135,7 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=2
-
 ynh_add_systemd_config
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..."
 
 yunohost service add $app --description="Self-hosted To-Do list application" --log="/var/log/$app/$app.log"
 
