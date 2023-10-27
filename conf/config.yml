@@ -138,9 +138,9 @@ mailer:
   # SMTP Auth Type. Can be either `plain`, `login` or `cram-md5`.
   authtype: "plain"
   # SMTP username
-  username: ""
+  username: "__APP__"
   # SMTP password
-  password: ""
+  password: "__MAIL_PWD__"
   # Wether to skip verification of the tls certificate on the server
   skiptlsverify: true
   # The default from address when sending emails
