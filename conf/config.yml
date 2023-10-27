@@ -345,4 +345,4 @@ defaultsettings:
   # The language of the user interface. Must be an ISO 639-1 language code. Will default to the browser language the user uses when signing up.
   language: __LANGUAGE__
   # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
-  timezone: <time zone set at service.timezone>
+  #timezone: <time zone set at service.timezone>
