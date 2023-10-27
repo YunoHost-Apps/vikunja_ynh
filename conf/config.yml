@@ -121,7 +121,7 @@ mailer:
   # **NOTE:** If you're unable to send mail and the only error you see in the logs is an `EOF`, try setting the port to `25`.
   port: 25
   # SMTP Auth Type. Can be either `plain`, `login` or `cram-md5`.
-  authtype: "plain"
+  authtype: "login"
   # SMTP username
   username: "__APP__"
   # SMTP password
@@ -139,7 +139,7 @@ mailer:
 
 log:
   # A folder where all the logfiles should go.
-  path: /var/log
+  path: "/var/log/__APP__"
   # Whether to show any logging at all or none
   enabled: true
   # Where the normal log should go. Possible values are stdout, stderr, file or off to disable standard logging.
@@ -328,6 +328,6 @@ defaultsettings:
   # Start of the week for the user. `0` is sunday, `1` is monday and so on.
   week_start: 1
   # The language of the user interface. Must be an ISO 639-1 language code. Will default to the browser language the user uses when signing up.
-  language: "__LANGUAGE__"
+  language: __LANGUAGE__
   # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
   #timezone: <time zone set at service.timezone>
