@@ -80,7 +80,7 @@ if [ -z "${maxitemsperpage:-}" ]; then
 fi
 
 if [ -z "${language:-}" ]; then
-	language="en-US"
+	language="en"
 	ynh_app_setting_set --app=$app --key=language --value=$language
 fi
 
