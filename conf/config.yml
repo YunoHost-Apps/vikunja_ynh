@@ -160,7 +160,7 @@ log:
   # Where the normal log should go. Possible values are stdout, stderr, file or off to disable standard logging.
   standard: "stdout"
   # Change the log level. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
-  level: "INFO"
+  level: "DEBUG"
   # Whether or not to log database queries. Useful for debugging. Possible values are stdout, stderr, file or off to disable database logging.
   database: "off"
   # The log level for database log messages. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
@@ -172,11 +172,11 @@ log:
   # Whether or not to log events. Useful for debugging. Possible values are stdout, stderr, file or off to disable events logging.
   events: "off"
   # The log level for event log messages. Possible values (case-insensitive) are ERROR, INFO, DEBUG.
-  eventslevel: "info"
+  eventslevel: "DEBUG"
   # Whether or not to log mail log messages. This will not log mail contents. Possible values are stdout, stderr, file or off to disable mail-related logging.
   mail: "off"
   # The log level for mail log messages. Possible values (case-insensitive) are ERROR, WARNING, INFO, DEBUG.
-  maillevel: "info"
+  maillevel: "DEBUG"
 
 ratelimit:
   # whether or not to enable the rate limit
@@ -343,6 +343,6 @@ defaultsettings:
   # Start of the week for the user. `0` is sunday, `1` is monday and so on.
   week_start: 1
   # The language of the user interface. Must be an ISO 639-1 language code. Will default to the browser language the user uses when signing up.
-  language: __LANGUAGE__
+  language: "__LANGUAGE__"
   # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
   #timezone: <time zone set at service.timezone>
