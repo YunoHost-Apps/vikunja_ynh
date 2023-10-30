@@ -6,7 +6,7 @@ test_format = 1.0
     # Default args to use for install
     # -------------------------------
 
-    args.language = "fr"
+    args.language = "fr-FR"
 
     # -------------------------------
     # Commits to test upgrade from
