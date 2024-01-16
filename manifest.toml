@@ -59,11 +59,17 @@ ram.runtime = "50M"
         i386.url = "https://dl.vikunja.io/api/0.22.0/vikunja-v0.22.0-linux-386-full.zip"
         i386.sha256 = "29b5cbbd3ad2f2c9c9b2a63a4ae0f60a20baf4b30519aafbc02e88fb1d177c88"
         in_subdir = false
+        format = "zip"
+        autoupdate.upstream = "https://github.com/go-vikunja/api"
+        autoupdate.strategy = "latest_github_tag"
         
         [resources.sources.front]
         url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.0.zip"
         sha256 = "2d85352060214993b0308e381d6e487dc04ab3d46453f21719580f1832a7280b"
         in_subdir = false
+        format = "zip"
+        autoupdate.upstream = "https://github.com/go-vikunja/frontend"
+        autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
 
