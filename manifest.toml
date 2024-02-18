@@ -7,7 +7,7 @@ description.fr = "Application de liste de tâches auto-hébergée"
 
 version = "0.22.1~ynh1"
 
-maintainers = ["eric_G"]
+maintainers = []
 
 [upstream]
 license = "GPL-3.0"
@@ -59,11 +59,17 @@ ram.runtime = "50M"
         i386.url = "https://dl.vikunja.io/api/0.22.1/vikunja-v0.22.1-linux-386-full.zip"
         i386.sha256 = "de1e271b6d3fe6024b790b95c1bf946a415598b31192638ef85589cd2c35f996"
         in_subdir = false
+        format = "zip"
+        autoupdate.upstream = "https://github.com/go-vikunja/api"
+        autoupdate.strategy = "latest_github_tag"
         
         [resources.sources.front]
         url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.1.zip"
         sha256 = "8e4145eacb9c2d95a95a43dca2f4dd0fd30ec8934f4562017caf77f3c5f9a277"
         in_subdir = false
+        format = "zip"
+        autoupdate.upstream = "https://github.com/go-vikunja/frontend"
+        autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
 
