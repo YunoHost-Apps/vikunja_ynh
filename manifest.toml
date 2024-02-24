@@ -62,6 +62,10 @@ ram.runtime = "50M"
         format = "zip"
         autoupdate.upstream = "https://github.com/go-vikunja/api"
         autoupdate.strategy = "latest_github_tag"
+        autoupdate.asset.amd64 = "tarball"
+        autoupdate.asset.i386 = "tarball"
+        autoupdate.asset.arm64 = "tarball"
+        autoupdate.asset.armhf = "tarball"
         
         [resources.sources.front]
         url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.1.zip"
