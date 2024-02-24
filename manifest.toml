@@ -14,7 +14,7 @@ license = "GPL-3.0"
 website = "https://vikunja.io/"
 demo = "https://try.vikunja.io/login"
 admindoc = "https://vikunja.io/docs/"
-code = "https://kolaente.dev/vikunja/"
+code = "https://kolaente.dev/vikunja/vikunja"
 
 [integration]
 yunohost = ">= 11.2"
@@ -60,8 +60,8 @@ ram.runtime = "50M"
         i386.sha256 = "de1e271b6d3fe6024b790b95c1bf946a415598b31192638ef85589cd2c35f996"
         in_subdir = false
         format = "zip"
-        autoupdate.upstream = "https://github.com/go-vikunja/api"
-        autoupdate.strategy = "latest_github_tag"
+        autoupdate.upstream = "https://kolaente.dev/vikunja/vikunja"
+        autoupdate.strategy = "latest_gitea_release"
         autoupdate.asset.amd64 = "tarball"
         autoupdate.asset.i386 = "tarball"
         autoupdate.asset.arm64 = "tarball"
@@ -72,8 +72,7 @@ ram.runtime = "50M"
         sha256 = "8e4145eacb9c2d95a95a43dca2f4dd0fd30ec8934f4562017caf77f3c5f9a277"
         in_subdir = false
         format = "zip"
-        autoupdate.upstream = "https://github.com/go-vikunja/frontend"
-        autoupdate.strategy = "latest_github_tag"
+
 
     [resources.ports]
 
