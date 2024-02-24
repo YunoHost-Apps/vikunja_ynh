@@ -40,9 +40,9 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 domain="$new_domain"
 path="$new_path"
-ynh_add_config --template="../conf/config.yml" --destination="$backend_path/config.yml"
+ynh_add_config --template="../conf/config.yml" --destination="$install_dir/config.yml"
 
-chmod 600 "$backend_path/config.yml"
+chmod 600 "$install_dir/config.yml"
 
 #=================================================
 # GENERIC FINALISATION
