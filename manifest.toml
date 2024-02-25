@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "vikunja"
@@ -5,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.22.1~ynh1"
+version = "0.23.0~ynh1"
 
 maintainers = []
 
@@ -49,30 +51,23 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources]
-        [resources.sources.back]
-        arm64.url = "https://dl.vikunja.io/api/0.22.1/vikunja-v0.22.1-linux-arm64-full.zip"
+        [resources.sources.main]
+        arm64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm64-full.zip"
         arm64.sha256 = "50a1670c0fde858c1cd7bc72cc670c4011a688a20b07ee62fab11bcca3eab01e"
-        amd64.url = "https://dl.vikunja.io/api/0.22.1/vikunja-v0.22.1-linux-amd64-full.zip"
+        amd64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-amd64-full.zip"
         amd64.sha256 = "c3e21ca5ccace3f9eaa423bab8c1cfc3e7de15d5c593db0aa6e4dbd9883469e6"
-        armhf.url = "https://dl.vikunja.io/api/0.22.1/vikunja-v0.22.1-linux-arm-7-full.zip"
+        armhf.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm-7-full.zip"
         armhf.sha256 = "72f50404df57d75060bdd0d162e12cba20269a0def7b38993e1b61c4cf3d69d2"
-        i386.url = "https://dl.vikunja.io/api/0.22.1/vikunja-v0.22.1-linux-386-full.zip"
+        i386.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-386-full.zip"
         i386.sha256 = "de1e271b6d3fe6024b790b95c1bf946a415598b31192638ef85589cd2c35f996"
         in_subdir = false
         format = "zip"
-        autoupdate.upstream = "https://kolaente.dev/vikunja/vikunja"
+
         autoupdate.strategy = "latest_gitea_release"
         autoupdate.asset.amd64 = "tarball"
         autoupdate.asset.i386 = "tarball"
         autoupdate.asset.arm64 = "tarball"
         autoupdate.asset.armhf = "tarball"
-        
-        [resources.sources.front]
-        url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.1.zip"
-        sha256 = "8e4145eacb9c2d95a95a43dca2f4dd0fd30ec8934f4562017caf77f3c5f9a277"
-        in_subdir = false
-        format = "zip"
-
 
     [resources.ports]
 
