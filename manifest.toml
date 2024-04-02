@@ -62,6 +62,7 @@ ram.runtime = "50M"
         format = "zip"
         autoupdate.upstream = "https://kolaente.dev/vikunja/vikunja"
         autoupdate.strategy = "latest_gitea_release"
+        autoupdate.allow_prereleases = true
         autoupdate.asset.amd64 = "tarball"
         autoupdate.asset.i386 = "tarball"
         autoupdate.asset.arm64 = "tarball"
