@@ -50,7 +50,8 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 ynh_setup_source --dest_dir="$install_dir"
 tempdir="$(mktemp -d)"
 executable="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-ln -s "$executable" "$install_dir/vikunja"
+#ln -s "$executable" "$install_dir/vikunja"
+mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
 
