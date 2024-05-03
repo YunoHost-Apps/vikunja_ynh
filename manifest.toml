@@ -53,13 +53,13 @@ ram.runtime = "50M"
     [resources.sources]
         [resources.sources.main]
         arm64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm64-full.zip"
-        arm64.sha256 = "50a1670c0fde858c1cd7bc72cc670c4011a688a20b07ee62fab11bcca3eab01e"
+        arm64.sha256 = "9d0cdfa56851f4a1093d6ba890499e8cd0ee3173b4112b3598e1fbff77b3f6f7"
         amd64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-amd64-full.zip"
-        amd64.sha256 = "c3e21ca5ccace3f9eaa423bab8c1cfc3e7de15d5c593db0aa6e4dbd9883469e6"
+        amd64.sha256 = "bab361cbc2988885679b3ebc46fd3e05e83feca690cb770fa81ac13d62b03f42"
         armhf.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm-7-full.zip"
-        armhf.sha256 = "72f50404df57d75060bdd0d162e12cba20269a0def7b38993e1b61c4cf3d69d2"
+        armhf.sha256 = "513ca8c7b4fc3f5d06868ebb2059067b3ed1befd96fba38284abb953ca20d13a"
         i386.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-386-full.zip"
-        i386.sha256 = "de1e271b6d3fe6024b790b95c1bf946a415598b31192638ef85589cd2c35f996"
+        i386.sha256 = "bc8b0ffb543d7f3a0bd117e171faa9520c2fb2cbbd51d7230dd0cd109cdca4c2"
         in_subdir = false
         format = "zip"
 
