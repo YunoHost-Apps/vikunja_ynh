@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # REMOVE SYSTEM CONFIGURATIONS
 #=================================================
-# REMOVE SYSTEMD SERVICE 
+# REMOVE SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Removing system configurations related to $app..." --weight=1
 
@@ -27,9 +27,6 @@ fi
 ynh_remove_systemd_config
 
 ynh_redis_remove_db "$redis_db"
-
-# Remove backend
-ynh_secure_remove --file="$backend_path"
 
 # Remove the dedicated NGINX config
 ynh_remove_nginx_config
