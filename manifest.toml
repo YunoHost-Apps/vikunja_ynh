@@ -60,13 +60,6 @@ ram.runtime = "50M"
         i386.sha256 = "de1e271b6d3fe6024b790b95c1bf946a415598b31192638ef85589cd2c35f996"
         in_subdir = false
         format = "zip"
-        autoupdate.upstream = "https://kolaente.dev/vikunja/vikunja"
-        autoupdate.strategy = "latest_gitea_release"
-        autoupdate.allow_prereleases = true
-        autoupdate.asset.amd64 = "tarball"
-        autoupdate.asset.i386 = "tarball"
-        autoupdate.asset.arm64 = "tarball"
-        autoupdate.asset.armhf = "tarball"
         
         [resources.sources.front]
         url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.1.zip"
