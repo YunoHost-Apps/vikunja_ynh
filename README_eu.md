@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Vikunja YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/vikunja.svg)](https://ci-apps.yunohost.org/ci/apps/vikunja/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
 
 [![Instalatu Vikunja YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
