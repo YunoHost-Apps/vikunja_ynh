@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # Vikunja para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/vikunja.svg)](https://ci-apps.yunohost.org/ci/apps/vikunja/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
 
 [![Instalar Vikunja con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
