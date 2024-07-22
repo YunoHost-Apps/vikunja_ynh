@@ -5,7 +5,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.22.1~ynh1"
+version = "0.24.1~ynh1"
 
 maintainers = []
 
@@ -17,14 +17,11 @@ admindoc = "https://vikunja.io/docs/"
 code = "https://kolaente.dev/vikunja/vikunja"
 
 [integration]
-yunohost = ">= 11.2.12"
+yunohost = ">= 11.2.21"
 architectures = "all"
 multi_instance = true
-
 ldap = false
-
 sso = false
-
 disk = "50M"
 ram.build = "1500M"
 ram.runtime = "50M"
@@ -62,8 +59,8 @@ ram.runtime = "50M"
         format = "zip"
 
         [resources.sources.front]
-        url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.22.1.zip"
-        sha256 = "8e4145eacb9c2d95a95a43dca2f4dd0fd30ec8934f4562017caf77f3c5f9a277"
+        url = "https://dl.vikunja.io/frontend/vikunja-frontend-0.24.1.zip"
+        sha256 = "2278ba1d7f50bf656a771378a7a47434730496fe1867d4d4964020a2e7a713ff"
         in_subdir = false
         format = "zip"
 
@@ -83,7 +80,7 @@ ram.runtime = "50M"
     api.auth_header = false
 
     [resources.apt]
-    packages = "postgresql, redis-server"
+    packages = "postgresql"
 
     [resources.database]
     type = "postgresql"
