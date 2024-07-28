@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.23.0~ynh1"
+version = "0.24.1~ynh1"
 
 maintainers = []
 
@@ -52,14 +52,14 @@ ram.runtime = "50M"
 
     [resources.sources]
         [resources.sources.main]
-        arm64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm64-full.zip"
-        arm64.sha256 = "9d0cdfa56851f4a1093d6ba890499e8cd0ee3173b4112b3598e1fbff77b3f6f7"
-        amd64.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-amd64-full.zip"
-        amd64.sha256 = "bab361cbc2988885679b3ebc46fd3e05e83feca690cb770fa81ac13d62b03f42"
-        armhf.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-arm-7-full.zip"
-        armhf.sha256 = "513ca8c7b4fc3f5d06868ebb2059067b3ed1befd96fba38284abb953ca20d13a"
-        i386.url = "https://dl.vikunja.io/vikunja/0.23.0/vikunja-v0.23.0-linux-386-full.zip"
-        i386.sha256 = "bc8b0ffb543d7f3a0bd117e171faa9520c2fb2cbbd51d7230dd0cd109cdca4c2"
+        arm64.url = "https://dl.vikunja.io/vikunja/0.24.1/vikunja-v0.24.1-linux-arm64-full.zip"
+        arm64.sha256 = "6642be9e0822ac8086c76823a2c090257f9cd5cacc2fd349ed12af520478ce55"
+        amd64.url = "https://dl.vikunja.io/vikunja/0.24.1/vikunja-v0.24.1-linux-amd64-full"
+        amd64.sha256 = "62a5e936c7dc193fc0a2db46767ea015f2e45a06fd0e40b5b0918b05bfb2d1ff"
+        armhf.url = "https://dl.vikunja.io/vikunja/0.24.1/vikunja-v0.24.1-linux-arm-7-full.zip"
+        armhf.sha256 = "f7ff14b789376fd4cd41e331e6bd399538a64626891bd77f14258b3fec901346"
+        i386.url = "https://dl.vikunja.io/vikunja/0.24.1/vikunja-v0.24.1-linux-386-full.zip"
+        i386.sha256 = "a552c4e031cbe4f69b13636d326f4bfa525905211469e615e51bd6d8cc85f923"
         in_subdir = false
         format = "zip"
 
