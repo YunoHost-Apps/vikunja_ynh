@@ -42,15 +42,14 @@ ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
 ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
 
 #=================================================
-# INSTALL BACKEND
+# INSTALL Vikunja
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
-tempdir="$(mktemp -d)"
-executable="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-ln -s "$executable" "$install_dir/vikunja"
+executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
+ln -s "$executable" "/usr/bin/vikunja"
 
 chmod +x "$install_dir/vikunja"
 
