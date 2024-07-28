@@ -3,9 +3,9 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Vikunja
+# YunoHost 上的 Vikunja
 
-[![集成程度](https://dash.yunohost.org/integration/vikunja.svg)](https://dash.yunohost.org/appci/app/vikunja) ![工作状态](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/vikunja.svg)](https://ci-apps.yunohost.org/ci/apps/vikunja/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
 
 [![使用 YunoHost 安装 Vikunja](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
@@ -27,7 +27,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 - CalDAV
 - Links  
 
-**分发版本：** 0.23.0~ynh1
+**分发版本：** 0.24.1~ynh1
 
 **演示：** <https://try.vikunja.io/login>
 
