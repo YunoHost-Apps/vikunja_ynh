@@ -49,7 +49,7 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
-mv "$executable" "vikunja"
+mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
 
