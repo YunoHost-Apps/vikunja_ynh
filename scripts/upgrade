@@ -22,60 +22,60 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-# If backend_path doesn't exist, create it
-if [ -z "${backend_path:-}" ]; then
-	backend_path=/opt/$app
-	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
-fi
-
 if [ -z "${set_motd:-}" ]; then
 	set_motd=""
-	ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
+	ynh_app_setting_set --app="$app" --key="set_motd" --value="$set_motd"
 fi
 
 if [ -z "${enable_registration:-}" ]; then
 	enable_registration="true"
-	ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
+	ynh_app_setting_set --app="$app" --key="enable_registration" --value="$enable_registration"
 fi
 
 if [ -z "${enable_linksharing:-}" ]; then
 	enable_linksharing="true"
-	ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
+	ynh_app_setting_set --app="$app" --key="enable_linksharing" --value="$enable_linksharing"
 fi
 
 if [ -z "${enable_taskattachments:-}" ]; then
 	enable_taskattachments="true"
-	ynh_app_setting_set --app=$app --key=enable_taskattachments --value=$enable_taskattachments
+	ynh_app_setting_set --app="$app" --key="enable_taskattachments" --value="$enable_taskattachments"
 fi
 
 if [ -z "${enable_taskcomments:-}" ]; then
 	enable_taskcomments="true"
-	ynh_app_setting_set --app=$app --key=enable_taskcomments --value=$enable_taskcomments
+	ynh_app_setting_set --app="$app" --key="enable_taskcomments" --value="$enable_taskcomments"
 fi
 
 if [ -z "${enable_emailreminders:-}" ]; then
 	enable_emailreminders="true"
-	ynh_app_setting_set --app=$app --key=enable_emailreminders --value=$enable_emailreminders
+	ynh_app_setting_set --app="$app" --key="enable_emailreminders" --value="$enable_emailreminders"
 fi
 
 if [ -z "${enable_userdeletion:-}" ]; then
 	enable_userdeletion="true"
-	ynh_app_setting_set --app=$app --key=enable_userdeletion --value=$enable_userdeletion
+	ynh_app_setting_set --app="$app" --key="enable_userdeletion" --value="$enable_userdeletion"
 fi
 
 if [ -z "${maxavatarsize:-}" ]; then
 	maxavatarsize=1024
-	ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
+	ynh_app_setting_set --app="$app" --key="maxavatarsize" --value="$maxavatarsize"
 fi
 
 if [ -z "${maxitemsperpage:-}" ]; then
 	maxitemsperpage=50
-	ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
+	ynh_app_setting_set --app="$app" --key="maxitemsperpage" --value="$maxitemsperpage"
 fi
 
 if [ -z "${language:-}" ]; then
 	language="en"
-	ynh_app_setting_set --app=$app --key=language --value=$language
+	ynh_app_setting_set --app="$app" --key="language" --value="$language"
+fi
+
+if ynh_compare_current_package_version --comparison lt --version "0.23.0~ynh1"; then
+	mv "$backend_path/config.yml" "$install_dir/config.yml"
+	ynh_secure_remove "$backend_path"
+	ynh_app_setting_delete --app="$app" --key="backend_path"
 fi
 
 #=================================================
@@ -92,35 +92,29 @@ ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=5
 
-# Frontend
-ynh_setup_source --dest_dir="$install_dir" --source_id="front"
-	
-# Backend
-mkdir -p "$backend_path/files"
-tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id="back"
-back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-cp "$back" "$backend_path/vikunja"
+ynh_setup_source --dest_dir="$install_dir"
+executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
+mv "$executable" "$install_dir/vikunja"
+
+chmod +x "$install_dir/vikunja"
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod +x "$backend_path/vikunja"
-chown -R $app:www-data "$backend_path/files"
 
 #=================================================
-# UPGRADE A CONFIGURATION
+# UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Upgrading a configuration file..." --weight=1
+ynh_script_progression --message="Updating $app's configuration files..." --weight=1
 
-ynh_add_config --template="config.yml" --destination="$backend_path/config.yml"
+ynh_add_config --template="config.yml" --destination="$install_dir/config.yml"
 
-chmod 400 "$backend_path/config.yml"
-chown $app:$app "$backend_path/config.yml"
+chmod 400 "$install_dir/config.yml"
+chown $app:$app "$install_dir/config.yml"
 
 #=================================================
-# NGINX CONFIGURATION
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 ynh_add_nginx_config
 

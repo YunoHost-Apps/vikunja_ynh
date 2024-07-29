@@ -21,7 +21,7 @@ service:
   # The base path on the file system where the binary and assets are.
   # Vikunja will also look in this path for a config file, so you could provide only this variable to point to a folder
   # with a config file which will then be used.
-  rootpath: "/opt/vikunja/"
+  rootpath: "__INSTALL_DIR__"
   # Path on the file system to serve static files from. Set to the path of the frontend files to host frontend alongside the api.
   staticpath: ""
   # The max number of items which can be returned per page
