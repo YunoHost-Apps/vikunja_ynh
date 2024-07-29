@@ -22,12 +22,6 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-# If backend_path doesn't exist, create it
-if [ -z "${backend_path:-}" ]; then
-	backend_path=/opt/$app
-	ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
-fi
-
 if [ -z "${set_motd:-}" ]; then
 	set_motd=""
 	ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
@@ -94,24 +88,27 @@ ynh_script_progression --message="Upgrading source files..." --weight=5
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir/front" --source_id="front" --full_replace=1
-ynh_setup_source --dest_dir="$install_dir/backend" --source_id="back" --full_replace=1 --keep="backend/config.yml"
+
+# Download, check integrity, uncompress and patch the source from app.src
+mkdir -p "$install_dir/backend/files"
 tempdir="$(mktemp -d)"
+ynh_setup_source --dest_dir=$tempdir --source_id="back"
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 cp "$back" "$install_dir/backend/vikunja"
 
+chmod +x "$install_dir/backend/vikunja"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod +x "$install_dir/backend/vikunja"
 
 #=================================================
 # UPGRADE A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading a configuration file..." --weight=1
 
-ynh_add_config --template="config.yml" --destination="$backend_path/config.yml"
+ynh_add_config --template="config.yml" --destination="$install_dir/backend/config.yml"
 
-chmod 400 "$backend_path/config.yml"
-chown $app:$app "$backend_path/config.yml"
+chmod 400 "$install_dir/backend/config.yml"
+chown $app:$app "$install_dir/backend/config.yml"
 
 #=================================================
 # NGINX CONFIGURATION

@@ -16,7 +16,6 @@ source /usr/share/yunohost/helpers
 timezone="$(cat /etc/timezone)"
 secret=$(ynh_string_random --length=32)
 redis_db=$(ynh_redis_get_free_db)
-backend_path=/opt/$app
 
 set_motd=""
 enable_registration="true"
@@ -32,7 +31,6 @@ maxitemsperpage=50
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 
-ynh_app_setting_set --app=$app --key=backend_path --value=$backend_path
 ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
 ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
 ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
@@ -50,16 +48,17 @@ ynh_script_progression --message="Setting up frontend..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir/front" --source_id="front"
-ynh_setup_source --dest_dir="$install_dir/backend" --source_id="back"
 
+# Download, check integrity, uncompress and patch the source from app.src
 mkdir -p "$install_dir/backend/files"
 tempdir="$(mktemp -d)"
+ynh_setup_source --dest_dir=$tempdir --source_id="back"
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 cp "$back" "$install_dir/backend/vikunja"
 
+chmod +x "$install_dir/backend/vikunja"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod +x "$install_dir/backend/vikunja"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -77,10 +76,10 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="config.yml" --destination="$backend_path/config.yml"
+ynh_add_config --template="config.yml" --destination="$install_dir/backend/config.yml"
 
-chmod 400 "$backend_path/config.yml"
-chown $app:$app "$backend_path/config.yml"
+chmod 400 "$install_dir/backend/config.yml"
+chown $app:$app "$install_dir/backend/config.yml"
 
 #=================================================
 # START SYSTEMD SERVICE
