@@ -51,7 +51,7 @@ ynh_setup_source --dest_dir="$install_dir"
 executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 ln -s "$executable" "/usr/bin/vikunja"
 
-chmod +x "$install_dir/vikunja"
+chmod +x "$executable"
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
