@@ -7,8 +7,8 @@ Requires=postgresql.service redis.service
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=/var/www/__APP__/
-ExecStart=/var/www/__APP__/vikunja
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=__INSTALL_DIR__/vikunja
 RestartSec=2s
 Restart=always
 

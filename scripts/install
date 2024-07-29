@@ -52,7 +52,6 @@ executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
-
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 

@@ -102,9 +102,9 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# UPGRADE A CONFIGURATION
+# UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Upgrading a configuration file..." --weight=1
+ynh_script_progression --message="Updating $app's configuration files..." --weight=1
 
 ynh_add_config --template="config.yml" --destination="$install_dir/config.yml"
 
@@ -112,9 +112,9 @@ chmod 400 "$install_dir/config.yml"
 chown $app:$app "$install_dir/config.yml"
 
 #=================================================
-# NGINX CONFIGURATION
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 ynh_add_nginx_config
 
