@@ -39,7 +39,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 
 - Website aplikasi resmi: <https://vikunja.io/>
 - Dokumentasi admin resmi: <https://vikunja.io/docs/>
-- Repositori kode aplikasi hulu: <https://kolaente.dev/vikunja/vikunja>
+- Depot kode aplikasi hulu: <https://kolaente.dev/vikunja/vikunja>
 - Gudang YunoHost: <https://apps.yunohost.org/app/vikunja>
 - Laporkan bug: <https://github.com/YunoHost-Apps/vikunja_ynh/issues>
 
