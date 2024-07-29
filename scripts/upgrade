@@ -92,20 +92,16 @@ ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=5
 
-# Frontend
-ynh_setup_source --dest_dir="$install_dir" --source_id="front"
-	
-# Backend
-mkdir -p "$backend_path/files"
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir/front" --source_id="front" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir/backend" --source_id="back" --full_replace=1 --keep="$install_dir/backend/config.yml"
 tempdir="$(mktemp -d)"
-ynh_setup_source --dest_dir=$tempdir --source_id="back"
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
-cp "$back" "$backend_path/vikunja"
+cp "$back" "$install_dir/backend/vikunja"
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-chmod +x "$backend_path/vikunja"
-chown -R $app:www-data "$backend_path/files"
+chmod +x "$install_dir/backend/vikunja"
 
 #=================================================
 # UPGRADE A CONFIGURATION

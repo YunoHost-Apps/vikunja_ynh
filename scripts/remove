@@ -28,9 +28,6 @@ ynh_remove_systemd_config
 
 ynh_redis_remove_db "$redis_db"
 
-# Remove backend
-ynh_secure_remove --file="$backend_path"
-
 # Remove the dedicated NGINX config
 ynh_remove_nginx_config
 

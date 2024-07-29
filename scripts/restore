@@ -14,16 +14,11 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Restoring $app main directory..." --weight=4
 
-# Frontend
 ynh_restore_file --origin_path="$install_dir"
-chmod 750 "$install_dir"
+
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
-
-# Backend
-ynh_restore_file --origin_path="$backend_path"
-chmod +x "$backend_path/vikunja"
-chown -R $app:www-data "$backend_path/files"
+chmod +x "$install_dir/backend/vikunja"
 
 #=================================================
 # RESTORE THE POSTGRESQL DATABASE
