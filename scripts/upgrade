@@ -94,7 +94,7 @@ ynh_script_progression --message="Upgrading source files..." --weight=5
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir/front" --source_id="front" --full_replace=1
-ynh_setup_source --dest_dir="$install_dir/backend" --source_id="back" --full_replace=1 --keep="$install_dir/backend/config.yml"
+ynh_setup_source --dest_dir="$install_dir/backend" --source_id="back" --full_replace=1 --keep="backend/config.yml"
 tempdir="$(mktemp -d)"
 back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 cp "$back" "$install_dir/backend/vikunja"
