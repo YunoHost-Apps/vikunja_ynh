@@ -34,8 +34,6 @@ domain="$new_domain"
 path="$new_path"
 ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 600 "$install_dir/config.yml"
-
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
