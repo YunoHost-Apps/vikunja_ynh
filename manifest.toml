@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.24.1~ynh2"
+version = "0.24.1~ynh3"
 
 maintainers = []
 
