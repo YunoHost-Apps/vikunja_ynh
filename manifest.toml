@@ -57,7 +57,7 @@ ram.runtime = "50M"
         armhf.sha256 = "f7ff14b789376fd4cd41e331e6bd399538a64626891bd77f14258b3fec901346"
         i386.url = "https://dl.vikunja.io/vikunja/0.24.1/vikunja-v0.24.1-linux-386-full.zip"
         i386.sha256 = "a552c4e031cbe4f69b13636d326f4bfa525905211469e615e51bd6d8cc85f923"
-        #in_subdir = false
+        in_subdir = false
         format = "zip"
 
         # autoupdate.strategy = "latest_gitea_release"
