@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -31,20 +25,20 @@ maxitemsperpage=50
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 
-ynh_app_setting_set --app=$app --key=set_motd --value=$set_motd
-ynh_app_setting_set --app=$app --key=enable_registration --value=$enable_registration
-ynh_app_setting_set --app=$app --key=enable_linksharing --value=$enable_linksharing
-ynh_app_setting_set --app=$app --key=enable_taskattachments --value=$enable_taskattachments
-ynh_app_setting_set --app=$app --key=enable_taskcomments --value=$enable_taskcomments
-ynh_app_setting_set --app=$app --key=enable_emailreminders --value=$enable_emailreminders
-ynh_app_setting_set --app=$app --key=enable_userdeletion --value=$enable_userdeletion
-ynh_app_setting_set --app=$app --key=maxavatarsize --value=$maxavatarsize
-ynh_app_setting_set --app=$app --key=maxitemsperpage --value=$maxitemsperpage
+ynh_app_setting_set --key=set_motd --value=$set_motd
+ynh_app_setting_set --key=enable_registration --value=$enable_registration
+ynh_app_setting_set --key=enable_linksharing --value=$enable_linksharing
+ynh_app_setting_set --key=enable_taskattachments --value=$enable_taskattachments
+ynh_app_setting_set --key=enable_taskcomments --value=$enable_taskcomments
+ynh_app_setting_set --key=enable_emailreminders --value=$enable_emailreminders
+ynh_app_setting_set --key=enable_userdeletion --value=$enable_userdeletion
+ynh_app_setting_set --key=maxavatarsize --value=$maxavatarsize
+ynh_app_setting_set --key=maxitemsperpage --value=$maxitemsperpage
 
 #=================================================
 # INSTALL Vikunja
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
@@ -52,40 +46,39 @@ executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression "Adding $app's configuration..."
 
-ynh_add_config --template="config.yml" --destination="$install_dir/config.yml"
+ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
 
-chmod 400 "$install_dir/config.yml"
-chown "$app:$app" "$install_dir/config.yml"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/config.yml"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "$install_dir/config.yml"
 
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+ynh_script_progression "Adding system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Self-hosted To-Do list application" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting $app's systemd service..." --weight=2
+ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemd_action --service_name="$app" --action=start --log_path=systemd #--line_match="server started on"
+ynh_systemctl --service="$app" --action=start --log_path=systemd #--wait_until="server started on"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
