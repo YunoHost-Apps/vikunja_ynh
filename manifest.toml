@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.24.1~ynh2"
+version = "0.24.1~ynh3"
 
 maintainers = []
 
@@ -60,11 +60,7 @@ ram.runtime = "50M"
         in_subdir = false
         format = "zip"
 
-        autoupdate.strategy = "latest_gitea_release"
-        autoupdate.asset.amd64 = "tarball"
-        autoupdate.asset.i386 = "tarball"
-        autoupdate.asset.arm64 = "tarball"
-        autoupdate.asset.armhf = "tarball"
+        # autoupdate.strategy = "latest_gitea_release"
 
     [resources.system_user]
     allow_email = true

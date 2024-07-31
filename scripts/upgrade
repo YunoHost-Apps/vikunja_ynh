@@ -92,7 +92,7 @@ ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=5
 
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 mv "$executable" "$install_dir/vikunja"
 
