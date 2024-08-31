@@ -40,23 +40,18 @@ ynh_app_setting_set --key=maxitemsperpage --value=$maxitemsperpage
 #=================================================
 ynh_script_progression "Setting up source files..."
 
-# Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
+
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression "Adding $app's configuration..."
 
 ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/config.yml"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "$install_dir/config.yml"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -74,7 +69,6 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-# Start a systemd service
 ynh_systemctl --service="$app" --action=start --log_path=systemd #--wait_until="server started on"
 
 #=================================================

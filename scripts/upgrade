@@ -16,65 +16,25 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=set_motd --value=""
-if [ -z "${set_motd:-}" ]; then
-	set_motd=""
-	ynh_app_setting_set --key="set_motd" --value="$set_motd"
-fi
+ynh_app_setting_set_default --key=set_motd --value=""
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_registration --value="true"
-if [ -z "${enable_registration:-}" ]; then
-	enable_registration="true"
-	ynh_app_setting_set --key="enable_registration" --value="$enable_registration"
-fi
+ynh_app_setting_set_default --key=enable_registration --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_linksharing --value="true"
-if [ -z "${enable_linksharing:-}" ]; then
-	enable_linksharing="true"
-	ynh_app_setting_set --key="enable_linksharing" --value="$enable_linksharing"
-fi
+ynh_app_setting_set_default --key=enable_linksharing --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_taskattachments --value="true"
-if [ -z "${enable_taskattachments:-}" ]; then
-	enable_taskattachments="true"
-	ynh_app_setting_set --key="enable_taskattachments" --value="$enable_taskattachments"
-fi
+ynh_app_setting_set_default --key=enable_taskattachments --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_taskcomments --value="true"
-if [ -z "${enable_taskcomments:-}" ]; then
-	enable_taskcomments="true"
-	ynh_app_setting_set --key="enable_taskcomments" --value="$enable_taskcomments"
-fi
+ynh_app_setting_set_default --key=enable_taskcomments --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_emailreminders --value="true"
-if [ -z "${enable_emailreminders:-}" ]; then
-	enable_emailreminders="true"
-	ynh_app_setting_set --key="enable_emailreminders" --value="$enable_emailreminders"
-fi
+ynh_app_setting_set_default --key=enable_emailreminders --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=enable_userdeletion --value="true"
-if [ -z "${enable_userdeletion:-}" ]; then
-	enable_userdeletion="true"
-	ynh_app_setting_set --key="enable_userdeletion" --value="$enable_userdeletion"
-fi
+ynh_app_setting_set_default --key=enable_userdeletion --value="true"
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=maxavatarsize --value=1024
-if [ -z "${maxavatarsize:-}" ]; then
-	maxavatarsize=1024
-	ynh_app_setting_set --key="maxavatarsize" --value="$maxavatarsize"
-fi
+ynh_app_setting_set_default --key=maxavatarsize --value=1024
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=maxitemsperpage --value=50
-if [ -z "${maxitemsperpage:-}" ]; then
-	maxitemsperpage=50
-	ynh_app_setting_set --key="maxitemsperpage" --value="$maxitemsperpage"
-fi
+ynh_app_setting_set_default --key=maxitemsperpage --value=50
 
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=language --value="en"
-if [ -z "${language:-}" ]; then
-	language="en"
-	ynh_app_setting_set --key="language" --value="$language"
-fi
+ynh_app_setting_set_default --key=language --value="en"
 
 if ynh_app_upgrading_from_version_before 0.23.0~ynh1; then
 	mv "$backend_path/config.yml" "$install_dir/config.yml"
@@ -100,17 +60,12 @@ mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
 ynh_script_progression "Updating $app's configuration files..."
 
 ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/config.yml"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/config.yml"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
