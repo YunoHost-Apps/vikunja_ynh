@@ -64,8 +64,6 @@ ram.runtime = "50M"
         in_subdir = false
         format = "zip"
 
-        # autoupdate.strategy = "latest_gitea_release"
-
     [resources.system_user]
     allow_email = true
 
