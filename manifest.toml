@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.24.1~ynh3"
+version = "0.24.1~ynh4"
 
 maintainers = []
 
@@ -19,11 +19,15 @@ admindoc = "https://vikunja.io/docs/"
 code = "https://kolaente.dev/vikunja/vikunja"
 
 [integration]
-yunohost = ">= 11.2.21"
+yunohost = ">= 11.2.29"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
 ram.build = "1500M"
 ram.runtime = "50M"
@@ -59,8 +63,6 @@ ram.runtime = "50M"
         i386.sha256 = "a552c4e031cbe4f69b13636d326f4bfa525905211469e615e51bd6d8cc85f923"
         in_subdir = false
         format = "zip"
-
-        # autoupdate.strategy = "latest_gitea_release"
 
     [resources.system_user]
     allow_email = true

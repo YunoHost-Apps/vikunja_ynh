@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -20,117 +14,79 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
-if [ -z "${set_motd:-}" ]; then
-	set_motd=""
-	ynh_app_setting_set --app="$app" --key="set_motd" --value="$set_motd"
-fi
+ynh_app_setting_set_default --key=set_motd --value=""
 
-if [ -z "${enable_registration:-}" ]; then
-	enable_registration="true"
-	ynh_app_setting_set --app="$app" --key="enable_registration" --value="$enable_registration"
-fi
+ynh_app_setting_set_default --key=enable_registration --value="true"
 
-if [ -z "${enable_linksharing:-}" ]; then
-	enable_linksharing="true"
-	ynh_app_setting_set --app="$app" --key="enable_linksharing" --value="$enable_linksharing"
-fi
+ynh_app_setting_set_default --key=enable_linksharing --value="true"
 
-if [ -z "${enable_taskattachments:-}" ]; then
-	enable_taskattachments="true"
-	ynh_app_setting_set --app="$app" --key="enable_taskattachments" --value="$enable_taskattachments"
-fi
+ynh_app_setting_set_default --key=enable_taskattachments --value="true"
 
-if [ -z "${enable_taskcomments:-}" ]; then
-	enable_taskcomments="true"
-	ynh_app_setting_set --app="$app" --key="enable_taskcomments" --value="$enable_taskcomments"
-fi
+ynh_app_setting_set_default --key=enable_taskcomments --value="true"
 
-if [ -z "${enable_emailreminders:-}" ]; then
-	enable_emailreminders="true"
-	ynh_app_setting_set --app="$app" --key="enable_emailreminders" --value="$enable_emailreminders"
-fi
+ynh_app_setting_set_default --key=enable_emailreminders --value="true"
 
-if [ -z "${enable_userdeletion:-}" ]; then
-	enable_userdeletion="true"
-	ynh_app_setting_set --app="$app" --key="enable_userdeletion" --value="$enable_userdeletion"
-fi
+ynh_app_setting_set_default --key=enable_userdeletion --value="true"
 
-if [ -z "${maxavatarsize:-}" ]; then
-	maxavatarsize=1024
-	ynh_app_setting_set --app="$app" --key="maxavatarsize" --value="$maxavatarsize"
-fi
+ynh_app_setting_set_default --key=maxavatarsize --value=1024
 
-if [ -z "${maxitemsperpage:-}" ]; then
-	maxitemsperpage=50
-	ynh_app_setting_set --app="$app" --key="maxitemsperpage" --value="$maxitemsperpage"
-fi
+ynh_app_setting_set_default --key=maxitemsperpage --value=50
 
-if [ -z "${language:-}" ]; then
-	language="en"
-	ynh_app_setting_set --app="$app" --key="language" --value="$language"
-fi
+ynh_app_setting_set_default --key=language --value="en"
 
-if ynh_compare_current_package_version --comparison lt --version "0.23.0~ynh1"; then
+if ynh_app_upgrading_from_version_before 0.23.0~ynh1; then
 	mv "$backend_path/config.yml" "$install_dir/config.yml"
-	ynh_secure_remove "$backend_path"
-	ynh_app_setting_delete --app="$app" --key="backend_path"
+	ynh_safe_rm "$backend_path"
+	ynh_app_setting_delete --key="backend_path"
 fi
 
-#=================================================
-# STANDARD UPGRADE STEPS
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
+ynh_systemctl --service=$app --action=stop --log_path=systemd
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=5
+ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir" --full_replace
 executable="$(find $install_dir -name "vikunja-*" \! -name "*.sha256")"
 mv "$executable" "$install_dir/vikunja"
 
 chmod +x "$install_dir/vikunja"
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating $app's configuration files..." --weight=1
+ynh_script_progression "Updating $app's configuration files..."
 
-ynh_add_config --template="config.yml" --destination="$install_dir/config.yml"
-
-chmod 400 "$install_dir/config.yml"
-chown $app:$app "$install_dir/config.yml"
+ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Self-hosted To-Do list application" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action=start --log_path=systemd --line_match="server started on"
+ynh_systemctl --service=$app --action=start --log_path=systemd --wait_until="server started on"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
