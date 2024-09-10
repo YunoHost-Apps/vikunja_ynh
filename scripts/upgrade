@@ -17,23 +17,14 @@ redis_db=$(ynh_redis_get_free_db)
 ynh_script_progression "Ensuring downward compatibility..."
 
 ynh_app_setting_set_default --key=set_motd --value=""
-
 ynh_app_setting_set_default --key=enable_registration --value="true"
-
 ynh_app_setting_set_default --key=enable_linksharing --value="true"
-
 ynh_app_setting_set_default --key=enable_taskattachments --value="true"
-
 ynh_app_setting_set_default --key=enable_taskcomments --value="true"
-
 ynh_app_setting_set_default --key=enable_emailreminders --value="true"
-
 ynh_app_setting_set_default --key=enable_userdeletion --value="true"
-
 ynh_app_setting_set_default --key=maxavatarsize --value=1024
-
 ynh_app_setting_set_default --key=maxitemsperpage --value=50
-
 ynh_app_setting_set_default --key=language --value="en"
 
 if ynh_app_upgrading_from_version_before 0.23.0~ynh1; then
