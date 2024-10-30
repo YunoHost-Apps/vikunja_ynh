@@ -79,7 +79,7 @@ ram.runtime = "50M"
     [resources.ports]
     
     [resources.apt]
-    packages = "postgresql"
+    packages = ["postgresql", "redis-server"]
 
     [resources.database]
     type = "postgresql"
