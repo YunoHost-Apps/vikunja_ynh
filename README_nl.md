@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # Vikunja voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/vikunja.svg)](https://ci-apps.yunohost.org/ci/apps/vikunja/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/vikunja)](https://ci-apps.yunohost.org/ci/apps/vikunja/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/vikunja)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/vikunja)
 
 [![Vikunja met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
