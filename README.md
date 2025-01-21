@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Vikunja for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/vikunja.svg)](https://ci-apps.yunohost.org/ci/apps/vikunja/) ![Working status](https://ci-apps.yunohost.org/ci/badges/vikunja.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/vikunja.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/vikunja)](https://ci-apps.yunohost.org/ci/apps/vikunja/)
+![Working status](https://apps.yunohost.org/badge/state/vikunja)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/vikunja)
 
 [![Install Vikunja with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=vikunja)
 
@@ -27,7 +29,7 @@ Vikunja is a self-hosted open-source to-do list application for all platforms.
 - CalDAV
 - Links  
 
-**Shipped version:** 0.24.2~ynh2
+**Shipped version:** 0.24.4~ynh1
 
 **Demo:** <https://try.vikunja.io/login>
 
