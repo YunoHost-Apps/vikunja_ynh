@@ -29,7 +29,7 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 - CalDAV
 - Links  
 
-**Version incluse :** 0.24.4~ynh1
+**Version incluse :** 0.24.6~ynh1
 
 **Démo :** <https://try.vikunja.io/login>
 
