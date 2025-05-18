@@ -8,7 +8,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 secret=$(ynh_string_random --length=32)
-timezone="$(cat /etc/timezone)"
+timezone="$(timedatectl show --value --property=Timezone)"
 redis_db=$(ynh_redis_get_free_db)
 
 #=================================================
