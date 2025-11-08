@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "0.24.6~ynh1"
+version = "1.0.0~ynh1"
 
 maintainers = []
 
@@ -16,7 +16,7 @@ license = "GPL-3.0"
 website = "https://vikunja.io/"
 demo = "https://try.vikunja.io/login"
 admindoc = "https://vikunja.io/docs/"
-code = "https://kolaente.dev/vikunja/vikunja"
+code = "https://github.com/go-vikunja/vikunja"
 
 [integration]
 yunohost = ">= 12.1.17"
@@ -52,14 +52,19 @@ ram.runtime = "50M"
 
     [resources.sources]
         [resources.sources.main]
-        arm64.url = "https://dl.vikunja.io/vikunja/0.24.6/vikunja-v0.24.6-linux-arm64-full.zip"
-        arm64.sha256 = "0595a36e5f1da1fb9842d152e075c08b6a85fea8f958ff4a0983df7f36377ecf"
-        amd64.url = "https://dl.vikunja.io/vikunja/0.24.6/vikunja-v0.24.6-linux-amd64-full.zip"
-        amd64.sha256 = "0007e0fb9e88021b390d898ad88a44d8981d52fee57ec19e0586703afb28f01a"
-        armhf.url = "https://dl.vikunja.io/vikunja/0.24.6/vikunja-v0.24.6-linux-arm-7-full.zip"
-        armhf.sha256 = "4f5a04cc33eb05d6c68f91e5cf1c801bb1678b4688a743b41f59bc87a22b95e5"
+        amd64.url = "https://github.com/go-vikunja/vikunja/releases/download/v1.0.0-rc2/vikunja-v1.0.0-rc2-linux-amd64-full.zip"
+        amd64.sha256 = "3225c28da3b75f34c3560ec7f520cb40125ec3ef045c60184c8cf65632c17343"
+        arm64.url = "https://github.com/go-vikunja/vikunja/releases/download/v1.0.0-rc2/vikunja-v1.0.0-rc2-linux-arm64-full.zip"
+        arm64.sha256 = "9d9b430b17867fa9a92c208a88ad05525735b970c9773f0ba577d319c1d6c71d"
+        armhf.url = "https://github.com/go-vikunja/vikunja/releases/download/v1.0.0-rc2/vikunja-v1.0.0-rc2-linux-arm-7-full.zip"
+        armhf.sha256 = "f57c568c219bacbebbf502b8a194dd47b5e2ff11ab1322a4fef028d42240df58"
         in_subdir = false
         format = "zip"
+
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = '.*-linux-amd64-full.zip'
+    autoupdate.asset.arm64 = '.*-linux-arm64-full.zip'
+    autoupdate.asset.armhf = '.*-linux-arm-7-full.zip'
 
     [resources.system_user]
     allow_email = true
