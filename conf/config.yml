@@ -357,37 +357,37 @@ files:
       # 
   # 
   # Authentication via an external LDAP server.
-  #ldap:
+  ldap:
     # Enable or disable LDAP authentication.
-    #enabled: true
+    enabled: true
     # The hostname of the LDAP server.
-    # host: "localhost"
+    host: "localhost"
     # The port of the LDAP server.
-    # port: 389
+    port: 389
     # The Base DN used for LDAP search requests.
-    #basedn: "ou=users,dc=yunohost,dc=org"
+    basedn: "ou=users,dc=yunohost,dc=org"
     # The string that will be used to filter users in the directory. `%[1]s` will be substituted with the username entered in the login form.
-    # userfilter: ""
+    userfilter: "(|(%{uid}=%{email})(%{mail}=%{email}))"
     # Whether to try and connect via a TLS-encrypted channel to the LDAP server.
-    # usetls: true
+    usetls: false
     # Whether to verify the TLS certificate offered by the LDAP server.
-    # verifytls: true
+    verifytls: false
     # The DN of the account used to search the LDAP directory for users when they want to log in.
-    # binddn: ""
+    binddn: "uid=local,ou=users,dc=yunohost,dc=org"
     # The password of the account used to search the LDAP directory.
     # bindpassword: ""
     # If enabled, Vikunja will automagically add users to teams in Vikunja matching `groupsyncfilter`. The teams will be automatically created and kept in sync by Vikunja.
     # groupsyncenabled: false
     # The filter to search for group objects in the ldap directory. Only used when `groupsyncenabled` is set to `true`.
-    #groupsyncfilter: "(&(|(objectclass=posixAccount))(uid={{username}})(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
+    # groupsyncfilter: ""
     # The LDAP attribute where an image, decoded as raw bytes, can be found. If provided, Vikunja will use the value as avatar.
     # avatarsyncattribute: ""
     # The directory attributes that are used to create accounts in Vikunja.
-    #attribute:
+    attribute:
       # The LDAP attribute used to set the username in Vikunja.
-      #username: "cn"
+      username: "cn"
       # The LDAP attribute used to set the email in Vikunja.
-      # email: "mail"
+      email: "mail"
       # The LDAP attribute used to set the displayed name in Vikunja.
       # displayname: "displayName"
       # The LDAP attribute used to check group membership of a team in Vikunja. Only used when groups are synced to Vikunja.
