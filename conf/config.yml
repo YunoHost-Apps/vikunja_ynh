@@ -1,4 +1,4 @@
-# service:
+service:
   # This token is used to verify issued JWT tokens.
   # Default is a random token which will be generated at each startup of Vikunja.
   # (This means all already issued tokens will be invalid once you restart Vikunja)
@@ -82,7 +82,7 @@
   # Configure the Sentry dsn used for frontend error tracking. Only used when Sentry is enabled for the frontend.
   # frontenddsn: "https://85694a2d757547cbbc90cd4b55c5a18d@o1047380.ingest.sentry.io/6024480"
 # 
-# database:
+database:
   # Database type to use. Supported values are mysql, postgres and sqlite. Vikunja is able to run with MySQL 8.0+, Mariadb 10.2+, PostgreSQL 12+, and sqlite.
   type: "postgres"
   # Database user which is used to connect to the database.
@@ -124,7 +124,7 @@
   # The Typesense API key you want to use.
   # apikey: ""
 # 
-# redis:
+redis:
   # Whether to enable redis or not
   enabled: true
   # The host of the redis server including its port.
@@ -146,7 +146,7 @@
   # How long (in seconds) the results of a preflight request can be cached.
   # maxage: 0
 # 
-# mailer:
+mailer:
   # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
   enabled: true
   # SMTP Host
@@ -405,7 +405,7 @@
   # password: ""
 # 
 # Provide default settings for new users. When a new user is created, these settings will automatically be set for the user. If you change them in the config file afterwards they will not be changed back for existing users.
-# defaultsettings:
+defaultsettings:
   # The avatar source for the user. Can be `gravatar`, `initials`, `upload` or `marble`. If you set this to `upload` you'll also need to specify `defaultsettings.avatar_file_id`.
   # avatar_provider: "initials"
   # The id of the file used as avatar.
