@@ -361,9 +361,9 @@ files:
     # Enable or disable LDAP authentication.
     enabled: true
     # The hostname of the LDAP server.
-    host: "localhost"
+    # host: "localhost"
     # The port of the LDAP server.
-    port: 389
+    # port: 389
     # The Base DN used for LDAP search requests.
     basedn: "ou=users,dc=yunohost,dc=org"
     # The string that will be used to filter users in the directory. `%[1]s` will be substituted with the username entered in the login form.
@@ -383,7 +383,7 @@ files:
     # The LDAP attribute where an image, decoded as raw bytes, can be found. If provided, Vikunja will use the value as avatar.
     # avatarsyncattribute: ""
     # The directory attributes that are used to create accounts in Vikunja.
-    attribute: ""
+    attribute:
       # The LDAP attribute used to set the username in Vikunja.
       username: "cn"
       # The LDAP attribute used to set the email in Vikunja.
