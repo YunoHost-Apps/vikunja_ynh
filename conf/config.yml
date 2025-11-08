@@ -217,7 +217,7 @@ mailer:
 # 
 files:
   # The path where files are stored
-  basepath: "__DATA_DIR__/files"
+  basepath: "__DATA_DIR__"
   # The maximum size of a file, as a human-readable string.
   # Warning: The max size is limited 2^64-1 bytes due to the underlying datatype
   maxsize: "100MB"
@@ -357,15 +357,15 @@ files:
       # 
   # 
   # Authentication via an external LDAP server.
-  # ldap:
+  ldap:
     # Enable or disable LDAP authentication.
-    # enabled: false
+    enabled: true
     # The hostname of the LDAP server.
-    # host: "localhost"
+    host: "localhost"
     # The port of the LDAP server.
-    # port: 389
+    port: 389
     # The Base DN used for LDAP search requests.
-    # basedn: ""
+    basedn: "ou=users,dc=yunohost,dc=org"
     # The string that will be used to filter users in the directory. `%[1]s` will be substituted with the username entered in the login form.
     # userfilter: ""
     # Whether to try and connect via a TLS-encrypted channel to the LDAP server.
@@ -379,13 +379,13 @@ files:
     # If enabled, Vikunja will automagically add users to teams in Vikunja matching `groupsyncfilter`. The teams will be automatically created and kept in sync by Vikunja.
     # groupsyncenabled: false
     # The filter to search for group objects in the ldap directory. Only used when `groupsyncenabled` is set to `true`.
-    # groupsyncfilter: "(&(objectclass=*)(|(objectclass=group)(objectclass=groupOfNames)))"
+    groupsyncfilter: "(&(|(objectclass=posixAccount))(uid={{username}})(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
     # The LDAP attribute where an image, decoded as raw bytes, can be found. If provided, Vikunja will use the value as avatar.
     # avatarsyncattribute: ""
     # The directory attributes that are used to create accounts in Vikunja.
-    # attribute: ""
+    attribute: ""
       # The LDAP attribute used to set the username in Vikunja.
-      # username: "uid"
+      username: "cn"
       # The LDAP attribute used to set the email in Vikunja.
       # email: "mail"
       # The LDAP attribute used to set the displayed name in Vikunja.
