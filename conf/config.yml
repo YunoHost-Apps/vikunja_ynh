@@ -134,7 +134,7 @@ redis:
   # 0 means default database
   db: __REDIS_DB__
 # 
-# cors:
+cors:
   # Whether to enable or disable cors headers.
   # By default, this is enabled only for requests from the desktop application running on localhost.
   # Note: If you want to put the frontend and the api on separate domains or ports, you will need to adjust this setting accordingly.
