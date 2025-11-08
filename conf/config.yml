@@ -215,12 +215,12 @@ mailer:
   # You should only change this if you know what you're doing.
   # noauthlimit: 10
 # 
-# files:
+files:
   # The path where files are stored
-  # basepath: "./files"
+  basepath: "__DATA_DIR__/files"
   # The maximum size of a file, as a human-readable string.
   # Warning: The max size is limited 2^64-1 bytes due to the underlying datatype
-  # maxsize: "20MB"
+  maxsize: "100MB"
 # 
 # To use any of the available migrators, you usually need to configure credentials for the appropriate service and enable it. Find instructions below on how to do this for the provided migrators.
 # migration:
