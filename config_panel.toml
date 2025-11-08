@@ -69,13 +69,6 @@ services = ["__APP__"]
         help = "If true, will allow users to request the complete deletion of their account. When using external authentication methods it may be required to coordinate with them in order to delete the account. This setting will not affect the cli commands for user deletion"
         bind = "enableuserdeletion:/var/www/__APP__/config.yml"
 
-        [main.config.maxavatarsize]
-        ask.en = "Max avatar size"
-        ask.fr = "Taille maximum de l'avatar"
-        type = "number"
-        help = "The maximum size clients will be able to request for user avatars. If clients request a size bigger than this, it will be changed on the fly"
-        bind = "maxavatarsize:/var/www/__APP__/config.yml"
-
         [main.config.maxitemsperpage]
         ask.en = "Max items per page"
         ask.fr = "Nombre d'éléments maximum par page"

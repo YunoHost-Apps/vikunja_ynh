@@ -22,7 +22,6 @@ ynh_app_setting_set_default --key=enable_taskattachments --value="true"
 ynh_app_setting_set_default --key=enable_taskcomments --value="true"
 ynh_app_setting_set_default --key=enable_emailreminders --value="true"
 ynh_app_setting_set_default --key=enable_userdeletion --value="true"
-ynh_app_setting_set_default --key=maxavatarsize --value=1024
 ynh_app_setting_set_default --key=maxitemsperpage --value=50
 ynh_app_setting_set_default --key=language --value="en"
 
