@@ -17,6 +17,7 @@ website = "https://vikunja.io/"
 demo = "https://try.vikunja.io/login"
 admindoc = "https://vikunja.io/docs/"
 code = "https://github.com/go-vikunja/vikunja"
+fund = "https://www.buymeacoffee.com/kolaente"
 
 [integration]
 yunohost = ">= 12.1.17"

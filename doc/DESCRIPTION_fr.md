@@ -7,4 +7,4 @@ Vikunja est une application de liste de tâches Open Source auto-hébergée pour
 - Tasks  
 - Kanban board
 - CalDAV
-- Links  
+- Links
