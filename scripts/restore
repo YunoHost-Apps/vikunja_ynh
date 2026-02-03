@@ -10,6 +10,13 @@ ynh_script_progression "Restoring $app main directory..."
 ynh_restore "$install_dir"
 
 #=================================================
+# RESTORE THE DATA DIRECTORY
+#=================================================
+ynh_script_progression "Restoring the data directory..."
+
+ynh_restore "$data_dir"
+
+#=================================================
 # RESTORE THE POSTGRESQL DATABASE
 #=================================================
 ynh_script_progression "Restoring the PostgreSQL database..."
@@ -33,7 +40,7 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 #=================================================
 ynh_script_progression "Reloading NGINX web server and $app's service..."
 
-ynh_systemctl --service=$app --action=start --log_path=systemd --wait_until="server started on"
+ynh_systemctl --service=$app --action=start
 
 ynh_systemctl --service=nginx --action=reload
 
