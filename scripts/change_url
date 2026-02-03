@@ -15,7 +15,7 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action=stop --log_path="systemd"
+ynh_systemctl --service=$app --action=stop
 
 #=================================================
 # MODIFY URL IN NGINX CONF
@@ -36,7 +36,7 @@ ynh_config_add --template="config.yml" --destination="$install_dir/config.yml"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action=start --log_path=systemd
+ynh_systemctl --service=$app --action=start
 
 #=================================================
 # END OF SCRIPT

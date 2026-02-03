@@ -22,7 +22,6 @@ ynh_app_setting_set_default --key=enable_taskattachments --value="true"
 ynh_app_setting_set_default --key=enable_taskcomments --value="true"
 ynh_app_setting_set_default --key=enable_emailreminders --value="true"
 ynh_app_setting_set_default --key=enable_userdeletion --value="true"
-ynh_app_setting_set_default --key=maxavatarsize --value=1024
 ynh_app_setting_set_default --key=maxitemsperpage --value=50
 ynh_app_setting_set_default --key=language --value="en"
 
@@ -37,7 +36,7 @@ fi
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action=stop --log_path=systemd
+ynh_systemctl --service=$app --action=stop
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -73,7 +72,7 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action=start --log_path=systemd --wait_until="server started on"
+ynh_systemctl --service=$app --action=start
 
 #=================================================
 # END OF SCRIPT

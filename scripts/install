@@ -17,7 +17,6 @@ enable_taskattachments="true"
 enable_taskcomments="true"
 enable_emailreminders="true"
 enable_userdeletion="true"
-maxavatarsize=1024
 maxitemsperpage=50
 
 #=================================================
@@ -31,7 +30,6 @@ ynh_app_setting_set --key=enable_taskattachments --value=$enable_taskattachments
 ynh_app_setting_set --key=enable_taskcomments --value=$enable_taskcomments
 ynh_app_setting_set --key=enable_emailreminders --value=$enable_emailreminders
 ynh_app_setting_set --key=enable_userdeletion --value=$enable_userdeletion
-ynh_app_setting_set --key=maxavatarsize --value=$maxavatarsize
 ynh_app_setting_set --key=maxitemsperpage --value=$maxitemsperpage
 
 #=================================================
@@ -68,7 +66,7 @@ yunohost service add $app --description="Self-hosted To-Do list application" --l
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action=start --log_path=systemd --wait_until="server started on"
+ynh_systemctl --service="$app" --action=start
 
 #=================================================
 # END OF SCRIPT
