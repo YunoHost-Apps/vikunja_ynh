@@ -12,7 +12,7 @@ Self-hosted To-Do list application
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://vikunja.io/)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://try.vikunja.io/login)
-[![Version: 1.1.0~ynh1](https://img.shields.io/badge/Version-1.1.0~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/vikunja/)
+[![Version: 2.0.0~ynh1](https://img.shields.io/badge/Version-2.0.0~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/vikunja/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/vikunja"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
