@@ -377,7 +377,7 @@ auth:
     # The password of the account used to search the LDAP directory.
     #bindpassword: ""
     # If enabled, Vikunja will automagically add users to teams in Vikunja matching `groupsyncfilter`. The teams will be automatically created and kept in sync by Vikunja.
-    # groupsyncenabled: false
+    #groupsyncenabled: false
     # The filter to search for group objects in the ldap directory. Only used when `groupsyncenabled` is set to `true`.
     #groupsyncfilter: ""
     # The LDAP attribute where an image, decoded as raw bytes, can be found. If provided, Vikunja will use the value as avatar.
