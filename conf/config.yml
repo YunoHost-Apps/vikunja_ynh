@@ -308,7 +308,7 @@ files:
   # The type of the storage backend. Can be either "memory" or "redis". If "redis" is chosen it needs to be configured separately.
   # type: "memory"
 # 
-# auth:
+auth:
   # Local authentication will let users log in and register (if enabled) through the db.
   # This is the default auth mechanism and does not require any additional configuration.
   # local:
