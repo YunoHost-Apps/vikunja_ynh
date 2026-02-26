@@ -367,21 +367,21 @@ files:
     # The Base DN used for LDAP search requests.
     basedn: "ou=users,dc=yunohost,dc=org"
     # The string that will be used to filter users in the directory. `%[1]s` will be substituted with the username entered in the login form.
-    userfilter: "(|(%{uid}=%{email})(%{mail}=%{email}))"
+    userfilter: "(&(|(objectclass=posixAccount))(|(uid=%uid)(mail=%uid))(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
     # Whether to try and connect via a TLS-encrypted channel to the LDAP server.
     usetls: false
     # Whether to verify the TLS certificate offered by the LDAP server.
     verifytls: false
     # The DN of the account used to search the LDAP directory for users when they want to log in.
-    binddn: "uid=local,ou=users,dc=yunohost,dc=org"
+    #binddn: "uid=local,ou=users,dc=yunohost,dc=org"
     # The password of the account used to search the LDAP directory.
-    # bindpassword: ""
+    #bindpassword: ""
     # If enabled, Vikunja will automagically add users to teams in Vikunja matching `groupsyncfilter`. The teams will be automatically created and kept in sync by Vikunja.
     # groupsyncenabled: false
     # The filter to search for group objects in the ldap directory. Only used when `groupsyncenabled` is set to `true`.
-    # groupsyncfilter: ""
+    #groupsyncfilter: ""
     # The LDAP attribute where an image, decoded as raw bytes, can be found. If provided, Vikunja will use the value as avatar.
-    # avatarsyncattribute: ""
+    #avatarsyncattribute: ""
     # The directory attributes that are used to create accounts in Vikunja.
     attribute:
       # The LDAP attribute used to set the username in Vikunja.
