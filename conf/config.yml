@@ -385,11 +385,11 @@ files:
     # The directory attributes that are used to create accounts in Vikunja.
     attribute:
       # The LDAP attribute used to set the username in Vikunja.
-      username: "cn"
+      username: "uid"
       # The LDAP attribute used to set the email in Vikunja.
       email: "mail"
       # The LDAP attribute used to set the displayed name in Vikunja.
-      # displayname: "displayName"
+      displayname: "displayName"
       # The LDAP attribute used to check group membership of a team in Vikunja. Only used when groups are synced to Vikunja.
       # memberid: "member"
     # 
