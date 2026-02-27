@@ -308,7 +308,7 @@ files:
   # The type of the storage backend. Can be either "memory" or "redis". If "redis" is chosen it needs to be configured separately.
   # type: "memory"
 # 
-# auth:
+auth:
   # Local authentication will let users log in and register (if enabled) through the db.
   # This is the default auth mechanism and does not require any additional configuration.
   # local:
@@ -367,13 +367,13 @@ files:
     # The Base DN used for LDAP search requests.
     basedn: "ou=users,dc=yunohost,dc=org"
     # The string that will be used to filter users in the directory. `%[1]s` will be substituted with the username entered in the login form.
-    userfilter: "(|(%{uid}=%{email})(%{mail}=%{email}))"
+    userfilter: "(&(uid=%s)(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
     # Whether to try and connect via a TLS-encrypted channel to the LDAP server.
     usetls: false
     # Whether to verify the TLS certificate offered by the LDAP server.
     verifytls: false
     # The DN of the account used to search the LDAP directory for users when they want to log in.
-    binddn: "uid=local,ou=users,dc=yunohost,dc=org"
+    # binddn: ""
     # The password of the account used to search the LDAP directory.
     # bindpassword: ""
     # If enabled, Vikunja will automagically add users to teams in Vikunja matching `groupsyncfilter`. The teams will be automatically created and kept in sync by Vikunja.
