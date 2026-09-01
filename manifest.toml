@@ -7,7 +7,7 @@ name = "Vikunja"
 description.en = "Self-hosted To-Do list application"
 description.fr = "Application de liste de tâches auto-hébergée"
 
-version = "2.5.0~ynh1"
+version = "2.6.0~ynh1"
 
 maintainers = []
 
@@ -54,12 +54,12 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        amd64.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.5.0/vikunja-v2.5.0-linux-amd64-full.zip"
-        amd64.sha256 = "8843de18f5f297bac83db010a54064a45033f82cffdf53421f6ce39f12a8ad98"
-        arm64.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.5.0/vikunja-v2.5.0-linux-arm64-full.zip"
-        arm64.sha256 = "299b90a2b9c5a54a2901f0c585f91cdc48042d59d2355ef5d058d6f27c5af45a"
-        armhf.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.5.0/vikunja-v2.5.0-linux-arm-7-full.zip"
-        armhf.sha256 = "c98905c277baca10092c15ef65c1f0c02c0da4cdd63a2ac1ef04f2a3e7115151"
+        amd64.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.6.0/vikunja-v2.6.0-linux-amd64-full.zip"
+        amd64.sha256 = "44f55c5620cf90f9f125ee2d2fda31db1946230da6d1dbc0f7943aed68db4264"
+        arm64.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.6.0/vikunja-v2.6.0-linux-arm64-full.zip"
+        arm64.sha256 = "b30e0ef2ba86ed1138a53097dc386eb0ac42483f85526325687f909c3430477b"
+        armhf.url = "https://github.com/go-vikunja/vikunja/releases/download/v2.6.0/vikunja-v2.6.0-linux-arm-7-full.zip"
+        armhf.sha256 = "8b91a9b3c6f0fcf95b31d23ef9fa6a726d6d7a54e5aa69c9ac88a5c04bae7067"
         in_subdir = false
         format = "zip"
 
